@@ -1,8 +1,8 @@
 ﻿namespace eShopOnBlazorWasm.Features.CatalogTypes
 {
   using BlazorState;
-  using eShopOnBlazorWasm.Features.Catalogs;
   using System.Collections.Generic;
+  using System.Linq;
   using System.Text.Json.Serialization;
 
   internal partial class CatalogTypeState : State<CatalogTypeState>
@@ -11,6 +11,8 @@
 
     [JsonIgnore]
     public IReadOnlyDictionary<int, CatalogTypeDto> CatalogTypes => _CatalogTypes;
+
+    public IReadOnlyList<CatalogTypeDto> CatalogTypesAsList => _CatalogTypes.Values.ToList();
 
     public CatalogTypeState() { }
 
