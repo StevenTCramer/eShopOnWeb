@@ -2,17 +2,16 @@
 @inherits BaseComponent
 
 <div data-qa="@TestId">
-  <p>CatalogItemList Component</p>
-
   <table class="table">
     <thead>
-      <tr class="esh-table-header">
+      <tr>
         <th></th>
         <th>Name</th>
         <th>Description</th>
         <th>Brand</th>
         <th>Type</th>
         <th>Price</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -20,7 +19,7 @@
       {
         <tr>
           <td>
-            <img class="esh-thumbnail" src="@catalogItem.PictureUri">
+            <img class="img-thumbnail" style="max-width: 120px; height: auto;" src="@catalogItem.PictureUri">
           </td>
           <td>
             <p>@catalogItem.Name</p>
@@ -38,15 +37,15 @@
             <span class="esh-price">@catalogItem.Price</span>
           </td>
           <td>
-            <a href=@Pages.Catalog.Edit.RouteFactory(catalogItem.Id) class="esh-table-link">
+            <a href=@Pages.Catalog.Edit.RouteFactory(catalogItem.Id) >
               Edit
             </a>
             |
-            <a href=@Pages.Catalog.Details.RouteFactory(catalogItem.Id) class="esh-table-link">
+            <a href=@Pages.Catalog.Details.RouteFactory(catalogItem.Id) >
               Details
             </a>
             |
-            <a href=@Pages.Catalog.Delete.RouteFactory(catalogItem.Id) class="esh-table-link">
+            <a href=@Pages.Catalog.Delete.RouteFactory(catalogItem.Id) >
               Delete
             </a>
           </td>
@@ -56,4 +55,4 @@
   </table>
 </div>
 
-<Pager OnPageChange=@HandlePageChange/>
+<Pager OnPageChange=@HandlePageChange />
