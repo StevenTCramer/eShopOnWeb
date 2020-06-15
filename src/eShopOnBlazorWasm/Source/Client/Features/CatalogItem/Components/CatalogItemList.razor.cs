@@ -1,11 +1,12 @@
 namespace eShopOnBlazorWasm.Features.CatalogItems.Components
 {
+  using eShopOnBlazorWasm.Features.Bases;
   using System.Threading.Tasks;
-  using static eShopOnBlazorWasm.Features.Counters.CounterState;
+  using static eShopOnBlazorWasm.Features.CatalogItems.CatalogItemState;
 
-  public partial class CatalogItemList
+  public partial class CatalogItemList:BaseComponent
   {
-    protected async Task ButtonClick() =>
-      _ = await Mediator.Send(new IncrementCounterAction { Amount = 5 });
+    protected async Task HandlePageChange(int aPageIndex) =>
+      _ = await Mediator.Send(new ChangePageAction { PageIndex = aPageIndex });
   }
 }

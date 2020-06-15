@@ -3,15 +3,20 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
   using BlazorState;
   using System;
   using System.Collections.Generic;
+  using System.Linq;
+  using System.Text.Json.Serialization;
 
   internal partial class CatalogItemState : State<CatalogItemState>
   {
     public int PageSize { get; private set; }
     public int PageIndex { get; private set; }
 
-    private List<CatalogItemDto> _CatalogItems;
+    private Dictionary<int, CatalogItemDto> _CatalogItems;
 
-    public IReadOnlyList<CatalogItemDto> CatalogItems => _CatalogItems.AsReadOnly();
+    [JsonIgnore]
+    public IReadOnlyDictionary<int, CatalogItemDto> CatalogItems => _CatalogItems;
+
+    public IReadOnlyList<CatalogItemDto> CatalogItemsAsList => _CatalogItems.Values.ToList();
 
     public CatalogItemState() { }
 
@@ -22,8 +27,8 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
     {
       Console.WriteLine("Initialize CatalogItemState");
       PageIndex = 0;
-      PageSize = 10;
-      _CatalogItems = new List<CatalogItemDto>();
+      PageSize = 5;
+      _CatalogItems = new Dictionary<int, CatalogItemDto>();
     }
   }
 }

@@ -4,9 +4,9 @@
 
   internal partial class CatalogItemState
   {
-    public class CreateCatalogItemAction : BaseAction 
+    public class ChangePageAction : BaseAction 
     {
-      public CreateCatalogItemRequest CreateCatalogItemRequest { get; set; }
+      public int  PageIndex { get; set; }
     }
   }
 }

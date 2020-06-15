@@ -3,7 +3,6 @@
 @using eShopOnBlazorWasm.Features.Bases
 @using eShopOnBlazorWasm.Components
 @using eShopOnBlazorWasm.Features.Counters.Components
-@using eShopOnBlazorWasm.Features.EventStreams
 
 @inherits BaseComponent
 
@@ -31,5 +30,3 @@
 <button class="btn btn-primary" data-qa="JsInterop" onclick="window.InteropTest()">Increment Count by 7 via JavaScript Interop</button>
 <br />
 <hr />
-<h6>EventStream is an example of middleware.  It adds each action to list.</h6>
-<EventStream />

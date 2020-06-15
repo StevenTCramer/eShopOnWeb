@@ -1,15 +1,12 @@
 ﻿namespace eShopOnBlazorWasm.Features.CatalogItems.Components
 {
+  using eShopOnBlazorWasm.Features.Bases;
   using Microsoft.AspNetCore.Components;
-  using System;
-  using System.Collections.Generic;
-  using System.Linq;
-  using System.Text;
-  using System.Threading.Tasks;
-  public partial class Details
+  public partial class Details:BaseComponent
   {
     public CatalogItemDto CatalogItem => 
-      CatalogItemState.CatalogItems.SingleOrDefault(aCatalogItemDto => aCatalogItemDto.Id == CatalogItemId);
+      CatalogItemState.CatalogItems[CatalogItemId];
+
     [Parameter] public int CatalogItemId { get; set; }
 
     public string CatalogBrand => CatalogBrandState.CatalogBrands[CatalogItem.CatalogBrandId].Brand;

@@ -20,6 +20,6 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
     [SwaggerOperation(Tags = new[] { FeatureAnnotations.FeatureGroup })]
     [ProducesResponseType(typeof(CreateCatalogItemResponse), (int)HttpStatusCode.Created)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-    public async Task<IActionResult> Process(CreateCatalogItemRequest aCreateCatalogItemRequest) => await Send(aCreateCatalogItemRequest);
+    public async Task<IActionResult> Process([FromBody]CreateCatalogItemRequest aCreateCatalogItemRequest) => await Send(aCreateCatalogItemRequest);
   }
 }

@@ -8,6 +8,7 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
   using System.Threading.Tasks;
   using eShopOnBlazorWasm.Features.Bases;
   using System;
+  using System.Linq;
 
   internal partial class CatalogItemState
   {
@@ -34,7 +35,9 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
           };
         GetCatalogItemsPaginatedResponse getCatalogItemsResponse =
           await HttpClient.GetFromJsonAsync<GetCatalogItemsPaginatedResponse>(getCatalogItemsPaginatedRequest.RouteFactory);
-        CatalogItemState._CatalogItems = getCatalogItemsResponse.CatalogItems;
+        CatalogItemState._CatalogItems = 
+          getCatalogItemsResponse.CatalogItems
+            .ToDictionary(aCatalogItem => aCatalogItem.Id, aCatalogItem => aCatalogItem);
         return Unit.Value;
       }
     }

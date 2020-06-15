@@ -4,9 +4,9 @@
 
   internal partial class CatalogItemState
   {
-    public class CreateCatalogItemAction : BaseAction 
+    public class EditCatalogItemAction : BaseAction 
     {
-      public CreateCatalogItemRequest CreateCatalogItemRequest { get; set; }
+      public UpdateCatalogItemRequest UpdateCatalogItemRequest { get; set; }
     }
   }
 }

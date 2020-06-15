@@ -6,7 +6,6 @@ namespace eShopOnBlazorWasm.Features.Bases
   using eShopOnBlazorWasm.Features.CatalogItems;
   using eShopOnBlazorWasm.Features.CatalogTypes;
   using eShopOnBlazorWasm.Features.Counters;
-  using eShopOnBlazorWasm.Features.EventStreams;
 
   /// <summary>
   /// Base Handler that makes it easy to access state
@@ -25,8 +24,7 @@ namespace eShopOnBlazorWasm.Features.Bases
 
     protected CounterState CounterState => Store.GetState<CounterState>();
 
-    protected EventStreamState EventStreamState => Store.GetState<EventStreamState>();
-
     public BaseHandler(IStore aStore) : base(aStore) { }
+
   }
 }

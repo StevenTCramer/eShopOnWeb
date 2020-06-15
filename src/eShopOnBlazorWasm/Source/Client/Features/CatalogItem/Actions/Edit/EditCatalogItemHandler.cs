@@ -7,17 +7,16 @@
   using System.Threading;
   using System.Threading.Tasks;
   using eShopOnBlazorWasm.Features.Bases;
-  using System;
   using System.Text.Json;
 
   internal partial class CatalogItemState
   {
-    public class CreateCatalogItemHandler : BaseHandler<CreateCatalogItemAction>
+    public class EditCatalogItemHandler : BaseHandler<EditCatalogItemAction>
     {
       private readonly HttpClient HttpClient;
       private readonly JsonSerializerOptions JsonSerializerOptions;
 
-      public CreateCatalogItemHandler
+      public EditCatalogItemHandler
       (
         IStore aStore, 
         HttpClient aHttpClient,
@@ -31,31 +30,27 @@
 
       public override async Task<Unit> Handle
       (
-        CreateCatalogItemAction aCreateCatalogItemAction,
+        EditCatalogItemAction aCreateCatalogItemAction,
         CancellationToken aCancellationToken
       )
       {
-        Console.WriteLine($"Name:{aCreateCatalogItemAction.CreateCatalogItemRequest.Name}");
         HttpResponseMessage httpResponseMessage =
-          await HttpClient.PostAsJsonAsync<CreateCatalogItemRequest>
+          await HttpClient.PostAsJsonAsync<UpdateCatalogItemRequest>
           (
-            aCreateCatalogItemAction.CreateCatalogItemRequest.RouteFactory,
-            aCreateCatalogItemAction.CreateCatalogItemRequest
+            aCreateCatalogItemAction.UpdateCatalogItemRequest.RouteFactory,
+            aCreateCatalogItemAction.UpdateCatalogItemRequest
           );
 
         httpResponseMessage.EnsureSuccessStatusCode();
 
         string json = await httpResponseMessage.Content.ReadAsStringAsync();
 
-        Console.WriteLine("==============");
-        Console.WriteLine(json);
+        UpdateCatalogItemResponse updateCatalogItemResponse = 
+          JsonSerializer.Deserialize<UpdateCatalogItemResponse>(json, JsonSerializerOptions);
 
-        CreateCatalogItemResponse createCatalogItemResponse = 
-          JsonSerializer.Deserialize<CreateCatalogItemResponse>(json, JsonSerializerOptions);
+        int catalogItemId = updateCatalogItemResponse.CatalogItem.Id;
 
-        int newCatalogItemId = createCatalogItemResponse.CatalogItem.Id;
-
-        CatalogItemState._CatalogItems[newCatalogItemId] = createCatalogItemResponse.CatalogItem;
+        CatalogItemState._CatalogItems[catalogItemId] = updateCatalogItemResponse.CatalogItem;
         
         return Unit.Value;
       }

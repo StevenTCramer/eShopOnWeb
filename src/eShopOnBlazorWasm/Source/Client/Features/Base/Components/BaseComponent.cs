@@ -6,7 +6,6 @@ namespace eShopOnBlazorWasm.Features.Bases
   using eShopOnBlazorWasm.Features.CatalogItems;
   using eShopOnBlazorWasm.Features.CatalogTypes;
   using eShopOnBlazorWasm.Features.Counters;
-  using eShopOnBlazorWasm.Features.EventStreams;
 
   /// <summary>
   /// Makes access to the State a little easier and by inheriting from
@@ -24,6 +23,5 @@ namespace eShopOnBlazorWasm.Features.Bases
     internal CatalogItemState CatalogItemState => GetState<CatalogItemState>();
     internal CatalogTypeState CatalogTypeState => GetState<CatalogTypeState>();
     internal CounterState CounterState => GetState<CounterState>();
-    internal EventStreamState EventStreamState => GetState<EventStreamState>();
   }
 }
