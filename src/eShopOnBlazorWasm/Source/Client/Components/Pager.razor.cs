@@ -2,6 +2,7 @@
 {
   using eShopOnBlazorWasm.Features.Bases;
   using Microsoft.AspNetCore.Components;
+  using System;
   using System.Threading.Tasks;
 
   public partial class Pager:BaseComponent
@@ -12,7 +13,9 @@
 
     private async Task OnClick(int aPageIndex)
     {
+      Console.WriteLine("Change Page");
       await OnPageChange.InvokeAsync(aPageIndex);
+      StateHasChanged();
     }
   }
 }
