@@ -27,7 +27,7 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
     {
       Console.WriteLine("Initialize CatalogItemState");
       PageIndex = 0;
-      PageSize = 10;
+      PageSize = 5;
       _CatalogItems = new Dictionary<int, CatalogItemDto>();
     }
   }
