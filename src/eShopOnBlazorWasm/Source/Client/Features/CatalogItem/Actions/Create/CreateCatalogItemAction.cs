@@ -1,7 +1,12 @@
 ﻿namespace eShopOnBlazorWasm.Features.CatalogItems
 {
-  public class CreateCatalogItemAction
+  using eShopOnBlazorWasm.Features.Bases;
+
+  internal partial class CatalogItemState
   {
-    public CreateCatalogItemRequest CreateCatalogItemRequest { get; set; }
+    public class CreateCatalogItemAction : BaseAction 
+    {
+      public CreateCatalogItemRequest CreateCatalogItemRequest { get; set; }
+    }
   }
 }
