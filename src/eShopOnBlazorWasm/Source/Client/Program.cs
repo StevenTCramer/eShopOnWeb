@@ -10,9 +10,8 @@ namespace eShopOnBlazorWasm.Client
   using System;
   using eShopOnBlazorWasm.Components;
   using eShopOnBlazorWasm.Features.ClientLoaders;
-  using eShopOnBlazorWasm.Features.EventStreams;
   using PeterLeslieMorris.Blazor.Validation;
-  using eShopOnBlazorWasm.Features.CatalogItems;
+  using System.Text.Json;
 
   public class Program
   {
@@ -58,9 +57,9 @@ namespace eShopOnBlazorWasm.Client
           )
       );
 
-      aServiceCollection.AddScoped(typeof(IPipelineBehavior<,>), typeof(EventStreamBehavior<,>));
       aServiceCollection.AddScoped<ClientLoader>();
       aServiceCollection.AddScoped<IClientLoaderConfiguration, ClientLoaderConfiguration>();
+      aServiceCollection.AddSingleton(new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
     }
   }
 }
