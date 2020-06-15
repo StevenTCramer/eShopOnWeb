@@ -1,7 +1,8 @@
 ﻿namespace eShopOnBlazorWasm.Features.CatalogItems.Components
 {
+  using eShopOnBlazorWasm.Features.Bases;
   using Microsoft.AspNetCore.Components;
-  public partial class Details
+  public partial class Details:BaseComponent
   {
     public CatalogItemDto CatalogItem => 
       CatalogItemState.CatalogItems[CatalogItemId];
