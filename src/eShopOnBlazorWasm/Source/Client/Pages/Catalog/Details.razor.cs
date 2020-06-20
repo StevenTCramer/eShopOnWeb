@@ -1,9 +1,9 @@
 namespace eShopOnBlazorWasm.Pages.Catalog
 {
-  using BlazorState.Features.Routing;
   using System.Threading.Tasks;
   using eShopOnBlazorWasm.Features.Bases;
   using Microsoft.AspNetCore.Components;
+  using static BlazorState.Features.Routing.RouteState;
 
   public partial class Details: BaseComponent
   {
@@ -14,7 +14,7 @@ namespace eShopOnBlazorWasm.Pages.Catalog
 
     [Parameter] public int EntityId { get; set; }
 
-    protected async Task ButtonClick() =>
-      _ = await Mediator.Send(new RouteState.ChangeRouteAction { NewRoute = "/" });
+    protected async Task BackClick() =>
+  _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Catalog.Index.Route });
   }
 }
