@@ -39,8 +39,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{6DDDEA23
 		..\..\..\..\Build\eShopOnBlazorWasm.Template.yml = ..\..\..\..\Build\eShopOnBlazorWasm.Template.yml
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "eShopOnBlazor", "eShopOnBlazor", "{C81F0784-A1B7-43DC-9449-A38556DD9109}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "eShopOnWeb", "eShopOnWeb", "{5AFFCBE7-3B87-47DD-99D0-969A60E49D91}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "..\Infrastructure\Infrastructure.csproj", "{5D844C43-C918-4306-A4F3-0D56EDDDD785}"
@@ -48,8 +46,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationCore", "..\ApplicationCore\ApplicationCore.csproj", "{E9A96FBE-9D1F-4069-A4E5-1EE7BD85377F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "..\Web\Web.csproj", "{8CA5B4BB-82A9-4FE7-8D4E-5F6A2B67F728}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopOnBlazor", "..\..\..\eShopOnBlazor\src\eShopOnBlazor\eShopOnBlazor.csproj", "{A275B0C9-628F-4060-859F-41CECFB7BDE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,10 +93,6 @@ Global
 		{8CA5B4BB-82A9-4FE7-8D4E-5F6A2B67F728}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CA5B4BB-82A9-4FE7-8D4E-5F6A2B67F728}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CA5B4BB-82A9-4FE7-8D4E-5F6A2B67F728}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A275B0C9-628F-4060-859F-41CECFB7BDE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A275B0C9-628F-4060-859F-41CECFB7BDE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A275B0C9-628F-4060-859F-41CECFB7BDE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A275B0C9-628F-4060-859F-41CECFB7BDE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -113,7 +105,6 @@ Global
 		{5D844C43-C918-4306-A4F3-0D56EDDDD785} = {5AFFCBE7-3B87-47DD-99D0-969A60E49D91}
 		{E9A96FBE-9D1F-4069-A4E5-1EE7BD85377F} = {5AFFCBE7-3B87-47DD-99D0-969A60E49D91}
 		{8CA5B4BB-82A9-4FE7-8D4E-5F6A2B67F728} = {5AFFCBE7-3B87-47DD-99D0-969A60E49D91}
-		{A275B0C9-628F-4060-859F-41CECFB7BDE6} = {C81F0784-A1B7-43DC-9449-A38556DD9109}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {16FA64C2-4A0E-42D4-94E6-C8CFDE84597E}
