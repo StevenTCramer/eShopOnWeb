@@ -5,7 +5,7 @@
 
   public class CreateCatalogItemRequest : BaseApiRequest, IRequest<CreateCatalogItemResponse>
   {
-    public const string Route = "api/CatalogItems";
+    public const string Route = "api/catalog-items";
 
     /// <summary>
     /// The Id of the CatalogBrand

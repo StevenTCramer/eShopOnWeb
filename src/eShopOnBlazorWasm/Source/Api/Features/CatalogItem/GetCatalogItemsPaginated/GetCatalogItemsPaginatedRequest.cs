@@ -5,7 +5,7 @@
   using System.Text.Json.Serialization;
   public class GetCatalogItemsPaginatedRequest : BaseApiRequest, IRequest<GetCatalogItemsPaginatedResponse>
   {
-    public const string Route = "api/CatalogItems";
+    public const string Route = "api/catalog-items";
 
     /// <summary>
     /// Page Size
