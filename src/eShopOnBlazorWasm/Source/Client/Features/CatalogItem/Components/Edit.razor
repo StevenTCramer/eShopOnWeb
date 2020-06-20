@@ -18,18 +18,18 @@
       <label for="Brand">Brand</label>
       <InputSelectNumber @bind-Value=UpdateCatalogItemRequest.CatalogBrandId class="form-control" id="Brand">
         @foreach (CatalogBrandDto catalogBrand in CatalogBrands)
-{
-<option value="@catalogBrand.Id">@catalogBrand.Brand</option>
-}
+        {
+          <option value="@catalogBrand.Id">@catalogBrand.Brand</option>
+        }
       </InputSelectNumber>
     </div>
     <div class="form-group">
       <label for="Type">Type</label>
       <InputSelectNumber @bind-Value=UpdateCatalogItemRequest.CatalogTypeId class="form-control" id="Type">
         @foreach (CatalogTypeDto catalogType in CatalogTypes)
-{
-<option value="@catalogType.Id">@catalogType.Type</option>
-}
+        {
+          <option value="@catalogType.Id">@catalogType.Type</option>
+        }
       </InputSelectNumber>
     </div>
     <div class="form-group">
@@ -37,6 +37,7 @@
       <InputNumber @bind-Value=UpdateCatalogItemRequest.Price class="form-control" id="Price" />
     </div>
     <input type="submit" class="btn btn-primary" value="Save" />
+    <button class="btn btn-primary" @onclick=@CancelClick>Cancel</button>
   </EditForm>
 
 </div>

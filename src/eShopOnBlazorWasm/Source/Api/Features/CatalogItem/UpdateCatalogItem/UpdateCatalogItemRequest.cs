@@ -6,7 +6,7 @@
 
   public class UpdateCatalogItemRequest : BaseApiRequest, IRequest<UpdateCatalogItemResponse>
   {
-    public const string Route = "api/CatalogItems/{CatalogItemId}";
+    public const string Route = "api/catalog-items/{CatalogItemId}";
 
     /// <summary>
     /// The CatalogItemId to update

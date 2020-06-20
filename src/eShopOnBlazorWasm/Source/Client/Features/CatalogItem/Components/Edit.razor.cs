@@ -4,7 +4,6 @@
   using eShopOnBlazorWasm.Features.CatalogBrands;
   using eShopOnBlazorWasm.Features.CatalogItems;
   using eShopOnBlazorWasm.Features.CatalogTypes;
-  using Microsoft.AspNetCore.Builder;
   using Microsoft.AspNetCore.Components;
   using System;
   using System.Collections.Generic;
@@ -14,13 +13,23 @@
 
   public partial class Edit : BaseComponent
   {
+    private IReadOnlyList<CatalogBrandDto> CatalogBrands => CatalogBrandState.CatalogBrandsAsList;
+    [Parameter] public int CatalogItemId { get; set; }
+    private IReadOnlyList<CatalogTypeDto> CatalogTypes => CatalogTypeState.CatalogTypesAsList;
+    [Parameter] public string RedirectRoute { get; set; }
     public UpdateCatalogItemRequest UpdateCatalogItemRequest { get; set; }
 
-    private IReadOnlyList<CatalogBrandDto> CatalogBrands => CatalogBrandState.CatalogBrandsAsList;
-    private IReadOnlyList<CatalogTypeDto> CatalogTypes => CatalogTypeState.CatalogTypesAsList;
+    protected async Task CancelClick() =>
+      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Catalog.Index.Route });
 
-    [Parameter] public int CatalogItemId { get; set; }
-    [Parameter] public string RedirectRoute { get; set; }
+    protected async Task HandleValidSubmit()
+    {
+      _ = await Mediator.Send(new EditCatalogItemAction { UpdateCatalogItemRequest = UpdateCatalogItemRequest });
+      if (!string.IsNullOrEmpty(RedirectRoute))
+      {
+        _ = await Mediator.Send(new ChangeRouteAction { NewRoute = RedirectRoute });
+      }
+    }
 
     protected override Task OnInitializedAsync()
     {
@@ -41,15 +50,6 @@
       UpdateCatalogItemRequest.Name = catalogItem.Name;
       UpdateCatalogItemRequest.PictureUri = new Uri(catalogItem.PictureUri);
       UpdateCatalogItemRequest.Price = catalogItem.Price;
-    }
-
-    protected async Task HandleValidSubmit()
-    {
-      _ = await Mediator.Send(new EditCatalogItemAction { UpdateCatalogItemRequest = UpdateCatalogItemRequest });
-      if (!string.IsNullOrEmpty(RedirectRoute))
-      {
-        _ = await Mediator.Send(new ChangeRouteAction { NewRoute = RedirectRoute });
-      }
     }
   }
 }

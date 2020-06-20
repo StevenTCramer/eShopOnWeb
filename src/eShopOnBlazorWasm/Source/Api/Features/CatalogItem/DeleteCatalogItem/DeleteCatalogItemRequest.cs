@@ -6,7 +6,7 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
 
   public class DeleteCatalogItemRequest : BaseApiRequest, IRequest<DeleteCatalogItemResponse>
   {
-    public const string Route = "api/catalogItem/{CatalogItemId}";
+    public const string Route = "api/catalog-items/{CatalogItemId}";
 
     /// <summary>
     /// The Id of CatalogItem to Delete

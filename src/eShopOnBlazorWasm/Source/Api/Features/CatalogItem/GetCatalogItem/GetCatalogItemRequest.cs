@@ -5,7 +5,7 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
 
   public class GetCatalogItemRequest : BaseApiRequest, IRequest<GetCatalogItemResponse>
   {
-    public const string Route = "api/CatalogItems/{CatalogItemId}";
+    public const string Route = "api/catalog-items/{CatalogItemId}";
 
     /// <summary>
     /// The specific CatalogItemId to fetch

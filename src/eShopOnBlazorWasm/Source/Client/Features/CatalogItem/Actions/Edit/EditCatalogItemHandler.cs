@@ -35,7 +35,7 @@
       )
       {
         HttpResponseMessage httpResponseMessage =
-          await HttpClient.PostAsJsonAsync<UpdateCatalogItemRequest>
+          await HttpClient.PutAsJsonAsync<UpdateCatalogItemRequest>
           (
             aCreateCatalogItemAction.UpdateCatalogItemRequest.RouteFactory,
             aCreateCatalogItemAction.UpdateCatalogItemRequest
