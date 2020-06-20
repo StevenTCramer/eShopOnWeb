@@ -40,6 +40,7 @@
     private void MapToRequest(CatalogItemDto catalogItem)
     {
       // TODO: consider Automapper here
+      UpdateCatalogItemRequest.CatalogItemId = catalogItem.Id;
       UpdateCatalogItemRequest.CatalogBrandId = catalogItem.CatalogBrandId;
       UpdateCatalogItemRequest.CatalogTypeId = catalogItem.CatalogTypeId;
       UpdateCatalogItemRequest.Description = catalogItem.Description;
