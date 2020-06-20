@@ -51,6 +51,13 @@
     public decimal Price { get; set; }
 
 
-    internal override string RouteFactory => $"{Route}/{CatalogItemId}?{nameof(CorrelationId)}={CorrelationId}";
+    internal override string RouteFactory
+    {
+      get
+      {
+        string temp = Route.Replace($"{{{nameof(CatalogItemId)}}}", CatalogItemId.ToString(), System.StringComparison.Ordinal);
+        return $"{temp}?{nameof(CorrelationId)}={CorrelationId}";
+      }
+    }
   }
 }
