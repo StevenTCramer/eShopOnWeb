@@ -1,8 +1,7 @@
-namespace eShopOnBlazorWasm.Pages.Catalog
+namespace eShopOnBlazorWasm.Features.CatalogItems.Pages
 {
   using BlazorState.Features.Routing;
   using eShopOnBlazorWasm.Features.Bases;
-  using static eShopOnBlazorWasm.Features.CatalogItems.CatalogItemState;
   using System.Threading.Tasks;
 
   public partial class Index: BaseComponent

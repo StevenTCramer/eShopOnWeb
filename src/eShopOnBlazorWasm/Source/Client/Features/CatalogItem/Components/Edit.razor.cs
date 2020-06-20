@@ -19,12 +19,12 @@
     public UpdateCatalogItemRequest UpdateCatalogItemRequest { get; set; }
 
     protected async Task CancelClick() =>
-      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Catalog.Index.Route });
+      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Index.Route });
 
     protected async Task HandleValidSubmit()
     {
       _ = await Mediator.Send(new EditCatalogItemAction { UpdateCatalogItemRequest = UpdateCatalogItemRequest });
-      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Catalog.Index.Route });
+      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Index.Route });
     }
 
     protected override Task OnInitializedAsync()

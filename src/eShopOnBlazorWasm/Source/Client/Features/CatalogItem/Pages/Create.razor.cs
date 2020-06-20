@@ -1,4 +1,4 @@
-﻿namespace eShopOnBlazorWasm.Features.CatalogItems.Components
+﻿namespace eShopOnBlazorWasm.Features.CatalogItems.Pages
 {
   using eShopOnBlazorWasm.Features.Bases;
   using eShopOnBlazorWasm.Features.CatalogBrands;
@@ -11,17 +11,19 @@
 
   public partial class Create : BaseComponent
   {
+    public const string Route = "/Catalog/Create";
+
     private IReadOnlyList<CatalogBrandDto> CatalogBrands => CatalogBrandState.CatalogBrandsAsList;
     private IReadOnlyList<CatalogTypeDto> CatalogTypes => CatalogTypeState.CatalogTypesAsList;
     public CreateCatalogItemRequest CreateCatalogItemRequest { get; set; }
 
     protected async Task CancelClick() =>
-      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Catalog.Index.Route });
+      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Index.Route });
 
     protected async Task HandleValidSubmit()
     {
       _ = await Mediator.Send(new CreateCatalogItemAction { CreateCatalogItemRequest = CreateCatalogItemRequest });
-      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Catalog.Index.Route });
+      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Index.Route });
     }
 
     protected override Task OnInitializedAsync()

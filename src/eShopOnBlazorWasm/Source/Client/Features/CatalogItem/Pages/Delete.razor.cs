@@ -1,4 +1,4 @@
-namespace eShopOnBlazorWasm.Pages.Catalog
+namespace eShopOnBlazorWasm.Features.CatalogItems.Pages
 {
   using System.Threading.Tasks;
   using eShopOnBlazorWasm.Features.Bases;
@@ -20,10 +20,10 @@ namespace eShopOnBlazorWasm.Pages.Catalog
     {
       Console.WriteLine("DeleteClicked");
       _ = await Mediator.Send(new DeleteCatalogItemAction { CatalogItemId = EntityId });
-      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Catalog.Index.Route });
+      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Index.Route });
     }
 
     protected async Task CancelClick() =>
-      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Catalog.Index.Route });
+      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Index.Route });
   }
 }
