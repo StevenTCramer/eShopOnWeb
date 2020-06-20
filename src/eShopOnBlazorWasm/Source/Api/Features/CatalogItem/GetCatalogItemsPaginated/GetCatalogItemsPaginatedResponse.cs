@@ -7,6 +7,8 @@
   public class GetCatalogItemsPaginatedResponse : BaseResponse
   {
     public List<CatalogItemDto> CatalogItems { get; set; }
+    public int PageCount { get; set; }
+
     public GetCatalogItemsPaginatedResponse() { }
 
     public GetCatalogItemsPaginatedResponse(Guid aRequestId): base(aRequestId)

@@ -2,14 +2,14 @@
 @inherits BaseComponent
 
 <div data-qa="@TestId">
-  <nav aria-label="Page navigation example">
+  <nav aria-label="Page navigation">
     <ul class="pagination">
 
       <li class="page-item">
-        <button class="btn btn-link" @onclick=@(async _ => await OnClick(PageIndex-1))>Previous</button>
+        <button class="btn btn-primary" disabled=@IsPreviousDisabled @onclick=@OnPreviousClick>Previous</button>
       </li>
       <li class="page-item">
-        <button class="btn btn-link" @onclick=@(async _ => await OnClick(PageIndex+1))>Next</button>
+        <button class="btn btn-primary" disabled=@IsNextDisabled @onclick=@OnNextClick>Next</button>
       </li>
     </ul>
   </nav>

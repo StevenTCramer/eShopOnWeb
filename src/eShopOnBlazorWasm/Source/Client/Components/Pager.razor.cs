@@ -2,20 +2,19 @@
 {
   using eShopOnBlazorWasm.Features.Bases;
   using Microsoft.AspNetCore.Components;
-  using System;
   using System.Threading.Tasks;
 
-  public partial class Pager:BaseComponent
+  public partial class Pager : BaseComponent
   {
     [Parameter] public EventCallback<int> OnPageChange { get; set; }
     [Parameter] public int PageCount { get; set; }
     [Parameter] public int PageIndex { get; set; }
 
-    private async Task OnClick(int aPageIndex)
-    {
-      Console.WriteLine("Change Page");
-      await OnPageChange.InvokeAsync(aPageIndex);
-      StateHasChanged();
-    }
+    protected bool IsNextDisabled => PageIndex == PageCount - 1;
+    protected bool IsPreviousDisabled => PageIndex == 0;
+
+    protected async Task OnNextClick() => await OnPageChange.InvokeAsync(PageIndex + 1);
+
+    protected async Task OnPreviousClick() => await OnPageChange.InvokeAsync(PageIndex - 1);
   }
 }

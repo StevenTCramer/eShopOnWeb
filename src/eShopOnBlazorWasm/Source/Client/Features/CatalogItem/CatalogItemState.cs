@@ -10,6 +10,7 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
   {
     public int PageSize { get; private set; }
     public int PageIndex { get; private set; }
+    public int PageCount { get; private set; }
 
     private Dictionary<int, CatalogItemDto> _CatalogItems;
 
@@ -26,6 +27,7 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
     public override void Initialize()
     {
       Console.WriteLine("Initialize CatalogItemState");
+      PageCount = 0;
       PageIndex = 0;
       PageSize = 5;
       _CatalogItems = new Dictionary<int, CatalogItemDto>();

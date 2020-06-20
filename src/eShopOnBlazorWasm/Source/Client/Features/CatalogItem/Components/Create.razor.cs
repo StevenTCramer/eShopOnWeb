@@ -7,6 +7,7 @@
   using System.Collections.Generic;
   using System.Threading.Tasks;
   using static BlazorState.Features.Routing.RouteState;
+  using static eShopOnBlazorWasm.Features.CatalogItems.CatalogItemState;
 
   public partial class Create: BaseComponent
   {
@@ -23,8 +24,6 @@
       
       return base.OnInitializedAsync();
     }
-
-
 
     protected async Task HandleValidSubmit()
     {

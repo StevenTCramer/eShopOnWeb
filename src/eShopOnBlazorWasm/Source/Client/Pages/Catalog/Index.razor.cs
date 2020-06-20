@@ -11,10 +11,5 @@ namespace eShopOnBlazorWasm.Pages.Catalog
 
     protected async Task CreateClick() =>
       _ = await Mediator.Send(new RouteState.ChangeRouteAction { NewRoute = Create.Route });
-
-    protected override async Task OnAfterRenderAsync(bool aFirstRender)
-    {
-      _ = await Mediator.Send(new FetchCatalogItemsAction());
-    }
   }
 }
