@@ -2,7 +2,7 @@
 
 @inherits BaseComponent
 
-<h4>Catalog Item Create Component</h4>
+<h4>Catalog Item</h4>
 
 <div>
   <EditForm Model=@CreateCatalogItemRequest OnValidSubmit=@HandleValidSubmit>
@@ -39,6 +39,7 @@
       <InputNumber @bind-Value=CreateCatalogItemRequest.Price class="form-control" id="Price" />
     </div>
     <input type="submit" class="btn btn-primary" value="Save" />
+    <button class="btn btn-primary" @onclick=@CancelClick>Cancel</button>
   </EditForm>
 
 </div>

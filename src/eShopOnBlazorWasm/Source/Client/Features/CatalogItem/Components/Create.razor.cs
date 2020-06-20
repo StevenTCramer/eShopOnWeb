@@ -7,29 +7,29 @@
   using System.Collections.Generic;
   using System.Threading.Tasks;
   using static BlazorState.Features.Routing.RouteState;
+  using static eShopOnBlazorWasm.Features.CatalogItems.CatalogItemState;
 
-  public partial class Create: BaseComponent
+  public partial class Create : BaseComponent
   {
-    public CreateCatalogItemRequest CreateCatalogItemRequest { get; set; }
-
     private IReadOnlyList<CatalogBrandDto> CatalogBrands => CatalogBrandState.CatalogBrandsAsList;
     private IReadOnlyList<CatalogTypeDto> CatalogTypes => CatalogTypeState.CatalogTypesAsList;
-
+    public CreateCatalogItemRequest CreateCatalogItemRequest { get; set; }
     [Parameter] public string RedirectRoute { get; set; }
 
-    protected override Task OnInitializedAsync()
-    {
-      CreateCatalogItemRequest = new CreateCatalogItemRequest();
-      
-      return base.OnInitializedAsync();
-    }
-
-
+    protected async Task CancelClick() =>
+      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Catalog.Index.Route });
 
     protected async Task HandleValidSubmit()
     {
       _ = await Mediator.Send(new CreateCatalogItemAction { CreateCatalogItemRequest = CreateCatalogItemRequest });
       _ = await Mediator.Send(new ChangeRouteAction { NewRoute = RedirectRoute });
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+      CreateCatalogItemRequest = new CreateCatalogItemRequest();
+
+      return base.OnInitializedAsync();
     }
   }
 }

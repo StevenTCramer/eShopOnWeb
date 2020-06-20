@@ -33,11 +33,16 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
             PageSize = CatalogItemState.PageSize,
             PageIndex = CatalogItemState.PageIndex
           };
+        
         GetCatalogItemsPaginatedResponse getCatalogItemsResponse =
           await HttpClient.GetFromJsonAsync<GetCatalogItemsPaginatedResponse>(getCatalogItemsPaginatedRequest.RouteFactory);
+        
         CatalogItemState._CatalogItems = 
           getCatalogItemsResponse.CatalogItems
             .ToDictionary(aCatalogItem => aCatalogItem.Id, aCatalogItem => aCatalogItem);
+
+        CatalogItemState.PageCount = getCatalogItemsResponse.PageCount;
+
         return Unit.Value;
       }
     }
