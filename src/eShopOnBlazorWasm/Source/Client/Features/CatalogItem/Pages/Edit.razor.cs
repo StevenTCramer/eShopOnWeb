@@ -1,4 +1,4 @@
-﻿namespace eShopOnBlazorWasm.Features.CatalogItems.Components
+﻿namespace eShopOnBlazorWasm.Features.CatalogItems.Pages
 {
   using eShopOnBlazorWasm.Features.Bases;
   using eShopOnBlazorWasm.Features.CatalogBrands;
@@ -13,23 +13,30 @@
 
   public partial class Edit : BaseComponent
   {
-    private IReadOnlyList<CatalogBrandDto> CatalogBrands => CatalogBrandState.CatalogBrandsAsList;
-    [Parameter] public int CatalogItemId { get; set; }
+    public const string Route = "/Catalog/Edit/{EntityId}";
+
     private IReadOnlyList<CatalogTypeDto> CatalogTypes => CatalogTypeState.CatalogTypesAsList;
+    private IReadOnlyList<CatalogBrandDto> CatalogBrands => CatalogBrandState.CatalogBrandsAsList;
+    
+    [Parameter] public int EntityId { get; set; }
+
     public UpdateCatalogItemRequest UpdateCatalogItemRequest { get; set; }
 
+    public static string RouteFactory(int aEntityId) =>
+      Route.Replace($"{{{nameof(EntityId)}}}", aEntityId.ToString(), System.StringComparison.OrdinalIgnoreCase);
+
     protected async Task CancelClick() =>
-      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Catalog.Index.Route });
+      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Index.Route });
 
     protected async Task HandleValidSubmit()
     {
       _ = await Mediator.Send(new EditCatalogItemAction { UpdateCatalogItemRequest = UpdateCatalogItemRequest });
-      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Catalog.Index.Route });
+      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Index.Route });
     }
 
     protected override Task OnInitializedAsync()
     {
-      CatalogItemDto catalogItem = CatalogItemState.CatalogItems[CatalogItemId];
+      CatalogItemDto catalogItem = CatalogItemState.CatalogItems[EntityId];
       UpdateCatalogItemRequest = new UpdateCatalogItemRequest();
 
       MapToRequest(catalogItem);
@@ -45,7 +52,7 @@
       UpdateCatalogItemRequest.CatalogTypeId = catalogItem.CatalogTypeId;
       UpdateCatalogItemRequest.Description = catalogItem.Description;
       UpdateCatalogItemRequest.Name = catalogItem.Name;
-      UpdateCatalogItemRequest.PictureUri = new Uri(catalogItem.PictureUri);
+      UpdateCatalogItemRequest.PictureUri = catalogItem.PictureUri;
       UpdateCatalogItemRequest.Price = catalogItem.Price;
     }
   }

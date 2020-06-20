@@ -35,7 +35,9 @@
     /// Uri of image displaying item
     /// </summary>
     /// <example>https://www.gravatar.com/avatar/fb214494d2a75080e8019f5fc961a1d9</example>
-    public System.Uri PictureUri { get; set; }
+#pragma warning disable CA1056 // Uri properties should not be strings
+    public string PictureUri { get; set; }
+#pragma warning restore CA1056 // Uri properties should not be strings
 
     /// <summary>
     /// The Price of the Item

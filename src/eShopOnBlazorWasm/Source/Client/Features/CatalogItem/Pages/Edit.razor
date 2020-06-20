@@ -1,7 +1,13 @@
-﻿@namespace eShopOnBlazorWasm.Features.CatalogItems.Components
+﻿@namespace eShopOnBlazorWasm.Features.CatalogItems.Pages
+@using eShopOnBlazorWasm.Features.Bases
 @inherits BaseComponent
+@page "/Catalog/Edit/{EntityId:int}"
 
+<br />
+<h1>Edit</h1>
 <h4>Catalog Item</h4>
+<hr />
+
 <div>
   <EditForm Model=@UpdateCatalogItemRequest OnValidSubmit=@HandleValidSubmit>
     <Validate />
@@ -18,18 +24,18 @@
       <label for="Brand">Brand</label>
       <InputSelectNumber @bind-Value=UpdateCatalogItemRequest.CatalogBrandId class="form-control" id="Brand">
         @foreach (CatalogBrandDto catalogBrand in CatalogBrands)
-        {
-          <option value="@catalogBrand.Id">@catalogBrand.Brand</option>
-        }
+{
+<option value="@catalogBrand.Id">@catalogBrand.Brand</option>
+}
       </InputSelectNumber>
     </div>
     <div class="form-group">
       <label for="Type">Type</label>
       <InputSelectNumber @bind-Value=UpdateCatalogItemRequest.CatalogTypeId class="form-control" id="Type">
         @foreach (CatalogTypeDto catalogType in CatalogTypes)
-        {
-          <option value="@catalogType.Id">@catalogType.Type</option>
-        }
+{
+<option value="@catalogType.Id">@catalogType.Type</option>
+}
       </InputSelectNumber>
     </div>
     <div class="form-group">

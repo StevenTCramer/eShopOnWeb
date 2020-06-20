@@ -1,4 +1,4 @@
-namespace eShopOnBlazorWasm.Pages.Catalog
+namespace eShopOnBlazorWasm.Features.CatalogItems.Pages
 {
   using System.Threading.Tasks;
   using eShopOnBlazorWasm.Features.Bases;
@@ -15,6 +15,6 @@ namespace eShopOnBlazorWasm.Pages.Catalog
     [Parameter] public int EntityId { get; set; }
 
     protected async Task BackClick() =>
-      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Catalog.Index.Route });
+      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Index.Route });
   }
 }

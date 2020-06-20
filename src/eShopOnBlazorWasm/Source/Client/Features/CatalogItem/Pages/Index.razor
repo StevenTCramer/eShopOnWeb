@@ -1,5 +1,13 @@
-@namespace eShopOnBlazorWasm.Features.CatalogItems.Components
+@namespace eShopOnBlazorWasm.Features.CatalogItems.Pages
+@using eShopOnBlazorWasm.Features.Bases
+@using eShopOnBlazorWasm.Features.CatalogItems.Components
+
 @inherits BaseComponent
+@page "/Catalog"
+
+<h1>Catalog Items</h1>
+<button class="btn btn-primary" @onclick=@CreateClick>Create</button>
+<br />
 
 <div data-qa="@TestId">
   <table class="table">
@@ -37,15 +45,15 @@
             <span class="esh-price">@catalogItem.Price</span>
           </td>
           <td>
-            <a href=@Pages.Catalog.Edit.RouteFactory(catalogItem.Id) >
+            <a href=@Pages.Edit.RouteFactory(catalogItem.Id)>
               Edit
             </a>
             |
-            <a href=@Pages.Catalog.Details.RouteFactory(catalogItem.Id) >
+            <a href=@Pages.Details.RouteFactory(catalogItem.Id)>
               Details
             </a>
             |
-            <a href=@Pages.Catalog.Delete.RouteFactory(catalogItem.Id) >
+            <a href=@Pages.Delete.RouteFactory(catalogItem.Id)>
               Delete
             </a>
           </td>
