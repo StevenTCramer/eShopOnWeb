@@ -14,7 +14,6 @@
     private IReadOnlyList<CatalogBrandDto> CatalogBrands => CatalogBrandState.CatalogBrandsAsList;
     private IReadOnlyList<CatalogTypeDto> CatalogTypes => CatalogTypeState.CatalogTypesAsList;
     public CreateCatalogItemRequest CreateCatalogItemRequest { get; set; }
-    [Parameter] public string RedirectRoute { get; set; }
 
     protected async Task CancelClick() =>
       _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Catalog.Index.Route });
@@ -22,7 +21,7 @@
     protected async Task HandleValidSubmit()
     {
       _ = await Mediator.Send(new CreateCatalogItemAction { CreateCatalogItemRequest = CreateCatalogItemRequest });
-      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = RedirectRoute });
+      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Catalog.Index.Route });
     }
 
     protected override Task OnInitializedAsync()
