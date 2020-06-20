@@ -23,7 +23,6 @@
         HttpClient = aHttpClient;
       }
 
-
       public override async Task<Unit> Handle
       (
         DeleteCatalogItemAction aDeleteCatalogItemAction,
@@ -36,11 +35,7 @@
         };
 
         HttpResponseMessage httpResponseMessage =
-          await HttpClient.PostAsJsonAsync<DeleteCatalogItemRequest>
-          (
-            deleteCatalogItemRequest.RouteFactory,
-            deleteCatalogItemRequest
-          );
+          await HttpClient.DeleteAsync(deleteCatalogItemRequest.RouteFactory);
 
         httpResponseMessage.EnsureSuccessStatusCode();
 

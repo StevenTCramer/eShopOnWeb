@@ -5,7 +5,7 @@ namespace eShopOnBlazorWasm.Pages.Catalog
   using Microsoft.AspNetCore.Components;
   using static BlazorState.Features.Routing.RouteState;
 
-  public partial class Details: BaseComponent
+  public partial class Details : BaseComponent
   {
     public const string Route = "/Catalog/Details/{EntityId}";
 
@@ -15,6 +15,6 @@ namespace eShopOnBlazorWasm.Pages.Catalog
     [Parameter] public int EntityId { get; set; }
 
     protected async Task BackClick() =>
-  _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Catalog.Index.Route });
+      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Catalog.Index.Route });
   }
 }
