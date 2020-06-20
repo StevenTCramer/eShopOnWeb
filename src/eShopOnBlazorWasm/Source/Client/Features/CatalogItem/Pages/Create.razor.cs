@@ -3,7 +3,6 @@
   using eShopOnBlazorWasm.Features.Bases;
   using eShopOnBlazorWasm.Features.CatalogBrands;
   using eShopOnBlazorWasm.Features.CatalogTypes;
-  using Microsoft.AspNetCore.Components;
   using System.Collections.Generic;
   using System.Threading.Tasks;
   using static BlazorState.Features.Routing.RouteState;

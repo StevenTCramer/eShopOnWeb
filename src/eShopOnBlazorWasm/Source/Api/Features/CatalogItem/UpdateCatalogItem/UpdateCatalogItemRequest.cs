@@ -42,7 +42,7 @@
     /// Uri of image displaying item
     /// </summary>
     /// <example>https://www.gravatar.com/avatar/fb214494d2a75080e8019f5fc961a1d9</example>
-    public System.Uri PictureUri { get; set; }
+    public string PictureUri { get; set; }
 
     /// <summary>
     /// The Price of the Item
