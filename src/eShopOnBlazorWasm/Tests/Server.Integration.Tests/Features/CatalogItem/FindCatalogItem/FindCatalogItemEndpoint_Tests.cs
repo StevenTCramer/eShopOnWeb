@@ -9,6 +9,7 @@
   using eShopOnBlazorWasm.Features.CatalogItems;
   using eShopOnBlazorWasm.Server.Integration.Tests.Infrastructure;
   using eShopOnBlazorWasm.Server;
+  using System.Net.Http.Json;
 
   public class Returns : BaseTest
   {
@@ -26,7 +27,7 @@
     public async Task CatalogItem_Given_ItemExists()
     {
       FindCatalogItemResponse findCatalogItemResponse =
-        await GetJsonAsync<FindCatalogItemResponse>(FindCatalogItemRequest.RouteFactory);
+        await HttpClient.GetFromJsonAsync<FindCatalogItemResponse>(FindCatalogItemRequest.RouteFactory);
 
       ValidateFindCatalogItemResponse(findCatalogItemResponse);
     }

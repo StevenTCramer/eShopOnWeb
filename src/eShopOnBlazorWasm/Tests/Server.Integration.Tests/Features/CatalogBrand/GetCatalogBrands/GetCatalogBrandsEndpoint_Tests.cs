@@ -2,12 +2,12 @@
 {
   using FluentAssertions;
   using Microsoft.AspNetCore.Mvc.Testing;
-  using Shouldly;
   using System.Text.Json;
   using System.Threading.Tasks;
   using eShopOnBlazorWasm.Server.Integration.Tests.Infrastructure;
   using eShopOnBlazorWasm.Server;
   using eShopOnBlazorWasm.Features.CatalogBrands;
+  using System.Net.Http.Json;
 
   public class Returns : BaseTest
   {
@@ -25,18 +25,15 @@
     public async Task AllCatalogBrands()
     {
       GetCatalogBrandsResponse getCatalogBrandsResponse =
-        await GetJsonAsync<GetCatalogBrandsResponse>(GetCatalogBrandsRequest.RouteFactory);
+      await HttpClient.GetFromJsonAsync<GetCatalogBrandsResponse>(GetCatalogBrandsRequest.RouteFactory);
 
       ValidateGetCatalogBrandsResponse(getCatalogBrandsResponse);
     }
 
     private void ValidateGetCatalogBrandsResponse(GetCatalogBrandsResponse aGetCatalogBrandsResponse)
     {
-      aGetCatalogBrandsResponse.CorrelationId.ShouldBe(GetCatalogBrandsRequest.CorrelationId);
       aGetCatalogBrandsResponse.CorrelationId.Should().Be(GetCatalogBrandsRequest.CorrelationId);
-      //aGetCatalogBrandsResponse.CatalogBrands.Count.ShouldBe(???);
       //aGetCatalogBrandsResponse.CatalogBrands.Count.Should().Be(???);
     }
-
   }
 }

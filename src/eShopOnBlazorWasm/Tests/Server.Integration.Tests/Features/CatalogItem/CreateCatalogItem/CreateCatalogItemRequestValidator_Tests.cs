@@ -7,22 +7,32 @@
 
   public class Validate_Should
   {
+    private readonly CreateCatalogItemRequest CreateCatalogItemRequest;
+
     private CreateCatalogItemRequestValidator CreateCatalogItemRequestValidator { get; set; }
+
+    public Validate_Should()
+    {
+      CreateCatalogItemRequest = new CreateCatalogItemRequest
+      {
+        Name = "Test Valid Catalog Item",
+        CatalogBrandId = 3,
+        CatalogTypeId = 2,
+        Description = "Test Valid Catalog Item Description",
+        PictureUri = null,
+        Price = 55.5M
+      };
+    }
 
     public void Be_Valid()
     {
-      var __requestName__Request = new CreateCatalogItemRequest
-      {
-        // Set Valid values here
-        Price = 50.00M
-      };
-
-      ValidationResult validationResult = CreateCatalogItemRequestValidator.TestValidate(__requestName__Request);
+      ValidationResult validationResult = 
+        CreateCatalogItemRequestValidator.TestValidate(CreateCatalogItemRequest);
 
       validationResult.IsValid.Should().BeTrue();
     }
 
-    public void Have_error_when_Days_are_negative() => CreateCatalogItemRequestValidator
+    public void Have_error_when_Price_is_negative() => CreateCatalogItemRequestValidator
       .ShouldHaveValidationErrorFor(aCreateCatalogItemRequest => aCreateCatalogItemRequest.Price, -1);
 
     public void Setup() => CreateCatalogItemRequestValidator = new CreateCatalogItemRequestValidator();

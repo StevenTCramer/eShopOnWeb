@@ -30,7 +30,7 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
       catalogItem = await CatalogItemRepository.AddAsync(catalogItem);
       response.CatalogItem = Mapper.Map<CatalogItem, CatalogItemDto>(catalogItem);
 
-      return await Task.Run(() => response);
+      return response;
     }
   }
 }

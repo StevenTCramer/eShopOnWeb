@@ -1,6 +1,5 @@
 ﻿namespace GetCatalogItemsPaginatedHandler
 {
-  using Shouldly;
   using System.Threading.Tasks;
   using System.Text.Json;
   using Microsoft.AspNetCore.Mvc.Testing;
@@ -19,10 +18,10 @@
       JsonSerializerOptions aJsonSerializerOptions
     ) : base(aWebApplicationFactory, aJsonSerializerOptions)
     {
-      GetCatalogItemsPaginatedRequest = new GetCatalogItemsPaginatedRequest { PageIndex = 2, PageSize = 10 };
+      GetCatalogItemsPaginatedRequest = new GetCatalogItemsPaginatedRequest { PageIndex = 0, PageSize = 5 };
     }
 
-    public async Task _10CatalogItems_Given_PageSize_10_Requested()
+    public async Task _10CatalogItems_Given_PageSize_5_Requested()
     {
       GetCatalogItemsPaginatedResponse getCatalogItemsPaginatedResponse = await Send(GetCatalogItemsPaginatedRequest);
 
@@ -32,6 +31,7 @@
     private void ValidateGetCatalogItemsPaginatedResponse(GetCatalogItemsPaginatedResponse aGetCatalogItemsPaginatedResponse)
     {
       aGetCatalogItemsPaginatedResponse.CorrelationId.Should().Be(GetCatalogItemsPaginatedRequest.CorrelationId);
+      aGetCatalogItemsPaginatedResponse.CatalogItems.Count.Should().Be(GetCatalogItemsPaginatedRequest.PageSize);
     }
 
   }

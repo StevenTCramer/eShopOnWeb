@@ -1,14 +1,15 @@
 ﻿namespace CreateCatalogItemEndpoint
 {
+  using eShopOnBlazorWasm.Features.CatalogItems;
+  using eShopOnBlazorWasm.Server;
+  using eShopOnBlazorWasm.Server.Integration.Tests.Infrastructure;
   using FluentAssertions;
   using Microsoft.AspNetCore.Mvc.Testing;
+  using System.Net;
+  using System.Net.Http;
+  using System.Net.Http.Json;
   using System.Text.Json;
   using System.Threading.Tasks;
-  using eShopOnBlazorWasm.Server.Integration.Tests.Infrastructure;
-  using eShopOnBlazorWasm.Server;
-  using System.Net.Http;
-  using System.Net;
-  using eShopOnBlazorWasm.Features.CatalogItems;
 
   public class Returns : BaseTest
   {
@@ -20,18 +21,25 @@
       JsonSerializerOptions aJsonSerializerOptions
     ) : base(aWebApplicationFactory, aJsonSerializerOptions)
     {
-      CreateCatalogItemRequest = new CreateCatalogItemRequest { };
+      CreateCatalogItemRequest = new CreateCatalogItemRequest
+      {
+        Name = "Test Valid Catalog Item",
+        CatalogBrandId = 3,
+        CatalogTypeId = 2,
+        Description = "Test Valid Catalog Item Description",
+        PictureUri = null,
+        Price = 55.5M
+      };
     }
 
     public async Task NewCatalogItem()
     {
-      var createCatalogItemRequest = new CreateCatalogItemRequest
-      {
-        
-      };
-
       CreateCatalogItemResponse createCatalogItemResponse =
-        await PostJsonAsync<CreateCatalogItemResponse>(CreateCatalogItemRequest.RouteFactory, createCatalogItemRequest);
+        await PostJsonAsync<CreateCatalogItemRequest, CreateCatalogItemResponse>
+        (
+          CreateCatalogItemRequest.RouteFactory,
+          CreateCatalogItemRequest
+        );
 
       ValidateCreateCatalogItemResponse(createCatalogItemResponse);
     }
@@ -41,7 +49,12 @@
       // Set invalid value
       CreateCatalogItemRequest.Price = -1;
 
-      HttpResponseMessage httpResponseMessage = await HttpClient.GetAsync(CreateCatalogItemRequest.RouteFactory);
+      HttpResponseMessage httpResponseMessage =
+        await HttpClient.PostAsJsonAsync<CreateCatalogItemRequest>
+        (
+          CreateCatalogItemRequest.RouteFactory,
+          CreateCatalogItemRequest
+        );
 
       string json = await httpResponseMessage.Content.ReadAsStringAsync();
 
@@ -54,6 +67,5 @@
     {
       aCreateCatalogItemResponse.CorrelationId.Should().Be(CreateCatalogItemRequest.CorrelationId);
     }
-
   }
 }

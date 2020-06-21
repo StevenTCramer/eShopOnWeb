@@ -9,6 +9,7 @@
   using eShopOnBlazorWasm.Features.CatalogItems;
   using eShopOnBlazorWasm.Server.Integration.Tests.Infrastructure;
   using eShopOnBlazorWasm.Server;
+  using System.Net.Http.Json;
 
   public class Returns : BaseTest
   {
@@ -20,13 +21,13 @@
       JsonSerializerOptions aJsonSerializerOptions
     ) : base(aWebApplicationFactory, aJsonSerializerOptions)
     {
-      GetCatalogItemsPaginatedRequest = new GetCatalogItemsPaginatedRequest { PageIndex = 2, PageSize = 10 };
+      GetCatalogItemsPaginatedRequest = new GetCatalogItemsPaginatedRequest { PageIndex = 0, PageSize = 10 };
     }
 
     public async Task _10CatalogItems_Given_PageSize_10_Requested()
     {
       GetCatalogItemsPaginatedResponse getCatalogItemsPaginatedResponse =
-        await GetJsonAsync<GetCatalogItemsPaginatedResponse>(GetCatalogItemsPaginatedRequest.RouteFactory);
+        await HttpClient.GetFromJsonAsync<GetCatalogItemsPaginatedResponse>(GetCatalogItemsPaginatedRequest.RouteFactory);
 
       ValidateGetCatalogItemsPaginatedResponse(getCatalogItemsPaginatedResponse);
     }
