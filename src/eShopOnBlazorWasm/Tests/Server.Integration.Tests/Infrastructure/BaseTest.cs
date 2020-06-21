@@ -8,6 +8,10 @@ namespace eShopOnBlazorWasm.Server.Integration.Tests.Infrastructure
   using System.Text.Json;
   using System.Threading.Tasks;
   using eShopOnBlazorWasm.Server;
+  using System.Net.Http.Headers;
+  using System.Net.Mime;
+  using System.Text;
+  using System.Net.Http.Json;
 
   /// <summary>
   /// 
@@ -75,19 +79,29 @@ namespace eShopOnBlazorWasm.Server.Integration.Tests.Infrastructure
       return response;
     }
 
-    protected async Task<TResponse> PostJsonAsync<TResponse>(string aUri, IRequest<TResponse> aRequest)
+    protected async Task<TResponse> PostJsonAsync<TRequest, TResponse>(string aUri, TRequest aRequest)
     {
-      var httpContent = new StringContent(JsonSerializer.Serialize(aRequest));
-      HttpResponseMessage httpResponseMessage = await HttpClient.PostAsync(aUri, httpContent);
+      HttpResponseMessage httpResponseMessage =
+      await HttpClient.PostAsJsonAsync<TRequest>
+      (
+        aUri,
+        aRequest
+      );
+      
+      string json = await httpResponseMessage.Content.ReadAsStringAsync();
 
       httpResponseMessage.EnsureSuccessStatusCode();
-
-      string json = await httpResponseMessage.Content.ReadAsStringAsync();
 
       TResponse response = JsonSerializer.Deserialize<TResponse>(json, JsonSerializerOptions);
 
       return response;
     }
 
+
+    public virtual async Task Setup()
+    {
+      using IServiceScope serviceScope = ServiceScopeFactory.CreateScope();
+      await Program.SeedDatabase(serviceScope);
+    }
   }
 }
