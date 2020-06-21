@@ -6,7 +6,7 @@ namespace eShopOnBlazorWasm.Pages
 
   public partial class CounterPage: BaseComponent
   {
-    public const string Route = "/counter";
+    public const string RouteTemplate = "/counter";
 
     protected async Task ButtonClick() =>
       _ = await Mediator.Send(new RouteState.ChangeRouteAction { NewRoute = "/" });

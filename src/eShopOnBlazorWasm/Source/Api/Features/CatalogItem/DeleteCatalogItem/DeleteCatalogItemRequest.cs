@@ -5,7 +5,7 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
 
   public class DeleteCatalogItemRequest : BaseApiRequest, IRequest<DeleteCatalogItemResponse>
   {
-    public const string Route = "api/catalog-items/{CatalogItemId}";
+    public const string RouteTemplate = "api/catalog-items/{CatalogItemId}";
 
     /// <summary>
     /// The Id of CatalogItem to Delete
@@ -14,7 +14,7 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
     public int CatalogItemId { get; set; }
 
     internal override string GetRoute() =>
-      $"{Route}?{nameof(CorrelationId)}={CorrelationId}"
+      $"{RouteTemplate}?{nameof(CorrelationId)}={CorrelationId}"
       .Replace
       (
         $"{{{nameof(CatalogItemId)}}}",

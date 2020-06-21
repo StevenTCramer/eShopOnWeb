@@ -5,8 +5,8 @@
 
   public class GetCatalogBrandsRequest : BaseApiRequest, IRequest<GetCatalogBrandsResponse>
   {
-    public const string Route = "api/CatalogBrands";
+    public const string RouteTemplate = "api/CatalogBrands";
 
-    internal override string GetRoute() => $"{Route}?{nameof(CorrelationId)}={CorrelationId}";
+    internal override string GetRoute() => $"{RouteTemplate}?{nameof(CorrelationId)}={CorrelationId}";
   }
 }

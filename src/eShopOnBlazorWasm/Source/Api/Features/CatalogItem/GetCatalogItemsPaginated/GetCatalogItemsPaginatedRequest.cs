@@ -5,7 +5,7 @@
   using System.Text.Json.Serialization;
   public class GetCatalogItemsPaginatedRequest : BaseApiRequest, IRequest<GetCatalogItemsPaginatedResponse>
   {
-    public const string Route = "api/catalog-items";
+    public const string RouteTemplate = "api/catalog-items";
 
     /// <summary>
     /// Page Size
@@ -24,6 +24,6 @@
     public int? CatalogTypeId { get; set; }
 
     internal override string GetRoute() => 
-      $"{Route}?{nameof(PageSize)}={PageSize}&{nameof(PageIndex)}={PageIndex}&{nameof(CorrelationId)}={CorrelationId}";
+      $"{RouteTemplate}?{nameof(PageSize)}={PageSize}&{nameof(PageIndex)}={PageIndex}&{nameof(CorrelationId)}={CorrelationId}";
   }
 }

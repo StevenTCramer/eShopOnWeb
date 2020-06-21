@@ -16,7 +16,7 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
     /// </remarks>
     /// <param name="aDeleteCatalogItemRequest"></param>
     /// <returns><see cref="DeleteCatalogItemResponse"/></returns>
-    [HttpDelete(DeleteCatalogItemRequest.Route)]
+    [HttpDelete(DeleteCatalogItemRequest.RouteTemplate)]
     [SwaggerOperation(Tags = new[] { FeatureAnnotations.FeatureGroup })]
     [ProducesResponseType(typeof(DeleteCatalogItemResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]

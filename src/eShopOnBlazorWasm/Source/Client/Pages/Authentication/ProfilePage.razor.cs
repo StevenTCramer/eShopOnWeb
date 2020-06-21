@@ -4,6 +4,6 @@ namespace eShopOnBlazorWasm.Pages
 
   public partial class ProfilePage : BaseComponent
   {
-    public const string Route = "/Profile";
+    public const string RouteTemplate = "/Profile";
   }
 }

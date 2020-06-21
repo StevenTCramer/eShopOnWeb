@@ -6,7 +6,7 @@
 
   public class UpdateCatalogItemRequest : BaseApiRequest, IRequest<UpdateCatalogItemResponse>
   {
-    public const string Route = "api/catalog-items/{CatalogItemId}";
+    public const string RouteTmplate = "api/catalog-items/{CatalogItemId}";
 
     /// <summary>
     /// The CatalogItemId to update
@@ -52,7 +52,7 @@
 
     internal override string GetRoute()
     {
-      string temp = Route.Replace($"{{{nameof(CatalogItemId)}}}", CatalogItemId.ToString(), System.StringComparison.Ordinal);
+      string temp = RouteTmplate.Replace($"{{{nameof(CatalogItemId)}}}", CatalogItemId.ToString(), System.StringComparison.Ordinal);
       return $"{temp}?{nameof(CorrelationId)}={CorrelationId}";
     }
   }

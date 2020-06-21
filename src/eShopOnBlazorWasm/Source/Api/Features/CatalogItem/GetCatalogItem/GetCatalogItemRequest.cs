@@ -5,7 +5,7 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
 
   public class GetCatalogItemRequest : BaseApiRequest, IRequest<GetCatalogItemResponse>
   {
-    public const string Route = "api/catalog-items/{CatalogItemId}";
+    public const string RouteTemplate = "api/catalog-items/{CatalogItemId}";
 
     /// <summary>
     /// The specific CatalogItemId to fetch
@@ -14,7 +14,7 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
     public int CatalogItemId { get; set; }
 
     internal override string GetRoute() =>
-      $"{Route}?{nameof(CorrelationId)}={CorrelationId}"
+      $"{RouteTemplate}?{nameof(CorrelationId)}={CorrelationId}"
       .Replace
       (
         $"{{{nameof(CatalogItemId)}}}",
