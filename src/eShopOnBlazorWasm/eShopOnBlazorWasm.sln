@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopOnBlazorWasm.Client", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopOnBlazorWasm.Client.Integration.Tests", "Tests\Client.Integration.Tests\eShopOnBlazorWasm.Client.Integration.Tests.csproj", "{91A64AA6-2F2D-4CC8-8EFB-BFFDAAB6A5F9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopOnBlazorWasm.EndToEnd.Selenium.Tests", "Tests\EndToEnd.Selenium.Tests\eShopOnBlazorWasm.EndToEnd.Selenium.Tests.csproj", "{EE1866DE-AC16-420F-B02F-6CF864EC3CFC}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopOnBlazorWasm.Server.Integration.Tests", "Tests\Server.Integration.Tests\eShopOnBlazorWasm.Server.Integration.Tests.csproj", "{0AA730BE-DA70-495C-A3E7-45B170AFACC2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopOnBlazorWasm.EndToEnd.TestCafe.Tests", "Tests\EndToEnd.TestCafe.Tests\eShopOnBlazorWasm.EndToEnd.TestCafe.Tests.csproj", "{9E3689A7-EFC8-49D1-8950-031B17124286}"
@@ -69,10 +67,6 @@ Global
 		{91A64AA6-2F2D-4CC8-8EFB-BFFDAAB6A5F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91A64AA6-2F2D-4CC8-8EFB-BFFDAAB6A5F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91A64AA6-2F2D-4CC8-8EFB-BFFDAAB6A5F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EE1866DE-AC16-420F-B02F-6CF864EC3CFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE1866DE-AC16-420F-B02F-6CF864EC3CFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE1866DE-AC16-420F-B02F-6CF864EC3CFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE1866DE-AC16-420F-B02F-6CF864EC3CFC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0AA730BE-DA70-495C-A3E7-45B170AFACC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0AA730BE-DA70-495C-A3E7-45B170AFACC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AA730BE-DA70-495C-A3E7-45B170AFACC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -99,7 +93,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{91A64AA6-2F2D-4CC8-8EFB-BFFDAAB6A5F9} = {2902FDFD-016E-4BF7-8B41-53D674FA53DD}
-		{EE1866DE-AC16-420F-B02F-6CF864EC3CFC} = {2902FDFD-016E-4BF7-8B41-53D674FA53DD}
 		{0AA730BE-DA70-495C-A3E7-45B170AFACC2} = {2902FDFD-016E-4BF7-8B41-53D674FA53DD}
 		{9E3689A7-EFC8-49D1-8950-031B17124286} = {2902FDFD-016E-4BF7-8B41-53D674FA53DD}
 		{5D844C43-C918-4306-A4F3-0D56EDDDD785} = {5AFFCBE7-3B87-47DD-99D0-969A60E49D91}
