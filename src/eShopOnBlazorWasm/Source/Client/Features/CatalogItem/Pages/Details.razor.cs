@@ -9,8 +9,9 @@ namespace eShopOnBlazorWasm.Features.CatalogItems.Pages
   {
     public const string RouteTemplate = "/Catalog/Details/{EntityId}";
 
-    public static string RouteFactory(int aEntityId) =>
-      RouteTemplate.Replace($"{{{nameof(EntityId)}}}", aEntityId.ToString(), System.StringComparison.OrdinalIgnoreCase);
+    public static string GetRoute(int aEntityId) =>
+      RouteTemplate
+        .Replace($"{{{nameof(EntityId)}}}", aEntityId.ToString(), System.StringComparison.OrdinalIgnoreCase);
 
     [Parameter] public int EntityId { get; set; }
 

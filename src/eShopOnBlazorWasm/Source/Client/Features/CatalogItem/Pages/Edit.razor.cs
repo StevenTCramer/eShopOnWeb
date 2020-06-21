@@ -22,8 +22,9 @@
 
     public UpdateCatalogItemRequest UpdateCatalogItemRequest { get; set; }
 
-    public static string RouteFactory(int aEntityId) =>
-      RouteTemplate.Replace($"{{{nameof(EntityId)}}}", aEntityId.ToString(), System.StringComparison.OrdinalIgnoreCase);
+    public static string GetRoute(int aEntityId) =>
+      RouteTemplate
+        .Replace($"{{{nameof(EntityId)}}}", aEntityId.ToString(), System.StringComparison.OrdinalIgnoreCase);
 
     protected async Task CancelClick() =>
       _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Index.RouteTemplate });
