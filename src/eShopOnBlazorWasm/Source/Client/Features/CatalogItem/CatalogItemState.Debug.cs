@@ -24,11 +24,15 @@
     /// Use in Tests ONLY, to initialize the State
     /// </summary>
     /// <param name="aCount"></param>
-    public void Initialize(List<CatalogItemDto> aCatalogItems)
+    public void Initialize(List<CatalogItemDto> aCatalogItems, int aPageCount = 1, int aPageIndex = 1, int aPageSize = 4)
     {
       ThrowIfNotTestAssembly(Assembly.GetCallingAssembly());
       _CatalogItems = aCatalogItems
         .ToDictionary(aCatalogItem => aCatalogItem.Id, aCatalogItem => aCatalogItem);
+      PageCount = aPageCount;
+      PageIndex = aPageIndex;
+      PageSize = aPageSize;
+      
     }
   }
 }
