@@ -13,7 +13,7 @@
 
   public partial class Edit : BaseComponent
   {
-    public const string Route = "/Catalog/Edit/{EntityId}";
+    public const string RouteTemplate = "/Catalog/Edit/{EntityId}";
 
     private IReadOnlyList<CatalogTypeDto> CatalogTypes => CatalogTypeState.CatalogTypesAsList;
     private IReadOnlyList<CatalogBrandDto> CatalogBrands => CatalogBrandState.CatalogBrandsAsList;
@@ -23,15 +23,15 @@
     public UpdateCatalogItemRequest UpdateCatalogItemRequest { get; set; }
 
     public static string RouteFactory(int aEntityId) =>
-      Route.Replace($"{{{nameof(EntityId)}}}", aEntityId.ToString(), System.StringComparison.OrdinalIgnoreCase);
+      RouteTemplate.Replace($"{{{nameof(EntityId)}}}", aEntityId.ToString(), System.StringComparison.OrdinalIgnoreCase);
 
     protected async Task CancelClick() =>
-      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Index.Route });
+      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Index.RouteTemplate });
 
     protected async Task HandleValidSubmit()
     {
       _ = await Mediator.Send(new EditCatalogItemAction { UpdateCatalogItemRequest = UpdateCatalogItemRequest });
-      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Index.Route });
+      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Pages.Index.RouteTemplate });
     }
 
     protected override Task OnInitializedAsync()

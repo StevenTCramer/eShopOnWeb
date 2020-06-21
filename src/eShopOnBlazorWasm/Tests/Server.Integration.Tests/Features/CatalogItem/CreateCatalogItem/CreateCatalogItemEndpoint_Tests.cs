@@ -37,7 +37,7 @@
       CreateCatalogItemResponse createCatalogItemResponse =
         await PostJsonAsync<CreateCatalogItemRequest, CreateCatalogItemResponse>
         (
-          CreateCatalogItemRequest.RouteFactory,
+          CreateCatalogItemRequest.GetRoute(),
           CreateCatalogItemRequest
         );
 
@@ -52,7 +52,7 @@
       HttpResponseMessage httpResponseMessage =
         await HttpClient.PostAsJsonAsync<CreateCatalogItemRequest>
         (
-          CreateCatalogItemRequest.RouteFactory,
+          CreateCatalogItemRequest.GetRoute(),
           CreateCatalogItemRequest
         );
 

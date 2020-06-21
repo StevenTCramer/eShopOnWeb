@@ -35,7 +35,8 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
           };
         
         GetCatalogItemsPaginatedResponse getCatalogItemsResponse =
-          await HttpClient.GetFromJsonAsync<GetCatalogItemsPaginatedResponse>(getCatalogItemsPaginatedRequest.RouteFactory);
+          await HttpClient
+            .GetFromJsonAsync<GetCatalogItemsPaginatedResponse>(getCatalogItemsPaginatedRequest.GetRoute());
         
         CatalogItemState._CatalogItems = 
           getCatalogItemsResponse.CatalogItems

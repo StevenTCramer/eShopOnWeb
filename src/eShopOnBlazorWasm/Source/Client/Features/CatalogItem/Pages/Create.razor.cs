@@ -10,19 +10,19 @@
 
   public partial class Create : BaseComponent
   {
-    public const string Route = "/Catalog/Create";
+    public const string RouteTemplate = "/Catalog/Create";
 
     private IReadOnlyList<CatalogBrandDto> CatalogBrands => CatalogBrandState.CatalogBrandsAsList;
     private IReadOnlyList<CatalogTypeDto> CatalogTypes => CatalogTypeState.CatalogTypesAsList;
     public CreateCatalogItemRequest CreateCatalogItemRequest { get; set; }
 
     protected async Task CancelClick() =>
-      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Index.Route });
+      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Index.RouteTemplate });
 
     protected async Task HandleValidSubmit()
     {
       _ = await Mediator.Send(new CreateCatalogItemAction { CreateCatalogItemRequest = CreateCatalogItemRequest });
-      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Index.Route });
+      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Index.RouteTemplate });
     }
 
     protected override Task OnInitializedAsync()

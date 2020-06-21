@@ -6,7 +6,7 @@
 
   public class UpdateCatalogItemRequest : BaseApiRequest, IRequest<UpdateCatalogItemResponse>
   {
-    public const string Route = "api/catalog-items/{CatalogItemId}";
+    public const string RouteTmplate = "api/catalog-items/{CatalogItemId}";
 
     /// <summary>
     /// The CatalogItemId to update
@@ -50,14 +50,10 @@
     /// <example>999.99</example>
     public decimal Price { get; set; }
 
-
-    internal override string RouteFactory
+    internal override string GetRoute()
     {
-      get
-      {
-        string temp = Route.Replace($"{{{nameof(CatalogItemId)}}}", CatalogItemId.ToString(), System.StringComparison.Ordinal);
-        return $"{temp}?{nameof(CorrelationId)}={CorrelationId}";
-      }
+      string temp = RouteTmplate.Replace($"{{{nameof(CatalogItemId)}}}", CatalogItemId.ToString(), System.StringComparison.Ordinal);
+      return $"{temp}?{nameof(CorrelationId)}={CorrelationId}";
     }
   }
 }

@@ -16,7 +16,7 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
     /// </remarks>
     /// <param name="aUpdateCatalogItemRequest"></param>
     /// <returns><see cref="UpdateCatalogItemResponse"/></returns>
-    [HttpPut(UpdateCatalogItemRequest.Route)]
+    [HttpPut(UpdateCatalogItemRequest.RouteTmplate)]
     [SwaggerOperation(Tags = new[] { FeatureAnnotations.FeatureGroup })]
     [ProducesResponseType(typeof(UpdateCatalogItemResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]

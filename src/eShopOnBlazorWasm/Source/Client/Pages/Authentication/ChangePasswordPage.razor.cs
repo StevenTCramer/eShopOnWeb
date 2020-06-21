@@ -4,6 +4,6 @@ namespace eShopOnBlazorWasm.Pages
 
   public partial class ChangePasswordPage : BaseComponent
   {
-    public const string Route = "/changePassword";
+    public const string RouteTemplate = "/changePassword";
   }
 }
