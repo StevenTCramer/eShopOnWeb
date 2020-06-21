@@ -18,7 +18,15 @@
       JsonSerializerOptions aJsonSerializerOptions
     ) : base(aWebApplicationFactory, aJsonSerializerOptions)
     {
-      CreateCatalogItemRequest = new CreateCatalogItemRequest { };
+      CreateCatalogItemRequest = new CreateCatalogItemRequest
+      {
+        Name = "Test Valid Catalog Item",
+        CatalogBrandId = 3,
+        CatalogTypeId = 2,
+        Description = "Test Valid Catalog Item Description",
+        PictureUri = null,
+        Price = 55.5M
+      };
     }
 
     public async Task NewCatalogItem()

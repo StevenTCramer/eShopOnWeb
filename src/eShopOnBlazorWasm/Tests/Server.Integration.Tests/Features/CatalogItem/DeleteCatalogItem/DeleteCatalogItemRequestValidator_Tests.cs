@@ -9,20 +9,24 @@
   {
     private DeleteCatalogItemRequestValidator DeleteCatalogItemRequestValidator { get; set; }
 
-    public void Be_Valid()
+    private DeleteCatalogItemRequest DeleteCatalogItemRequest { get; set; }
+
+    public Validate_Should()
     {
-      var __requestName__Request = new DeleteCatalogItemRequest
+      DeleteCatalogItemRequest = new DeleteCatalogItemRequest
       {
-        // Set Valid values here
         CatalogItemId = 5
       };
+    }
 
-      ValidationResult validationResult = DeleteCatalogItemRequestValidator.TestValidate(__requestName__Request);
+    public void Be_Valid()
+    {
+      ValidationResult validationResult = DeleteCatalogItemRequestValidator.TestValidate(DeleteCatalogItemRequest);
 
       validationResult.IsValid.Should().BeTrue();
     }
 
-    public void Have_error_when_Days_are_negative() => DeleteCatalogItemRequestValidator
+    public void Have_error_when_CatalogItemId_is_negative() => DeleteCatalogItemRequestValidator
       .ShouldHaveValidationErrorFor(aDeleteCatalogItemRequest => aDeleteCatalogItemRequest.CatalogItemId, -1);
 
     public void Setup() => DeleteCatalogItemRequestValidator = new DeleteCatalogItemRequestValidator();

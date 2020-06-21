@@ -1,6 +1,5 @@
 ﻿namespace UpdateCatalogItemHandler
 {
-  using Shouldly;
   using System.Threading.Tasks;
   using System.Text.Json;
   using Microsoft.AspNetCore.Mvc.Testing;
@@ -19,7 +18,12 @@
       JsonSerializerOptions aJsonSerializerOptions
     ) : base(aWebApplicationFactory, aJsonSerializerOptions)
     {
-      UpdateCatalogItemRequest = new UpdateCatalogItemRequest { CatalogItemId = 10 };
+      UpdateCatalogItemRequest = 
+        new UpdateCatalogItemRequest 
+        { 
+          CatalogItemId = 10,
+          Description = "Updated Description"
+        };
     }
 
     public async Task UpdatedCatalogItem()
@@ -32,8 +36,6 @@
     private void ValidateUpdateCatalogItemResponse(UpdateCatalogItemResponse aUpdateCatalogItemResponse)
     {
       aUpdateCatalogItemResponse.CorrelationId.Should().Be(UpdateCatalogItemRequest.CorrelationId);
-      
     }
-
   }
 }

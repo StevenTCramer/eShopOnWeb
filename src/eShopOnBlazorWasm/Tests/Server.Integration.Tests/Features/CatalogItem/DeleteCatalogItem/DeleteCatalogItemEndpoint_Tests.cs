@@ -9,6 +9,7 @@
   using eShopOnBlazorWasm.Features.CatalogItems;
   using eShopOnBlazorWasm.Server.Integration.Tests.Infrastructure;
   using eShopOnBlazorWasm.Server;
+  using System.Net.Http.Json;
 
   public class Returns : BaseTest
   {
@@ -26,7 +27,7 @@
     public async Task DeleteCatalogItemResponse()
     {
       DeleteCatalogItemResponse DeleteCatalogItemResponse =
-        await GetJsonAsync<DeleteCatalogItemResponse>(DeleteCatalogItemRequest.RouteFactory);
+        await HttpClient.GetFromJsonAsync<DeleteCatalogItemResponse>(DeleteCatalogItemRequest.RouteFactory);
 
       ValidateDeleteCatalogItemResponse(DeleteCatalogItemResponse);
     }

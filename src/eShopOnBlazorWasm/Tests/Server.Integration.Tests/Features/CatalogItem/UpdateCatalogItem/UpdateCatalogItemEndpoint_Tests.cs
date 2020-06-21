@@ -9,6 +9,7 @@
   using eShopOnBlazorWasm.Features.CatalogItems;
   using System.Net.Http;
   using System.Net;
+  using System.Net.Http.Json;
 
   public class Returns : BaseTest
   {
@@ -26,7 +27,7 @@
     public async Task UpdatedCatalogItem()
     {
       UpdateCatalogItemResponse updateCatalogItemResponse =
-        await GetJsonAsync<UpdateCatalogItemResponse>(UpdateCatalogItemRequest.RouteFactory);
+        await HttpClient.GetFromJsonAsync<UpdateCatalogItemResponse>(UpdateCatalogItemRequest.RouteFactory);
 
       ValidateUpdateCatalogItemResponse(updateCatalogItemResponse);
     }

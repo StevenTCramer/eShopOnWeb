@@ -1,6 +1,5 @@
 ﻿namespace GetCatalogTypesHandler
 {
-  using Shouldly;
   using System.Threading.Tasks;
   using System.Text.Json;
   using Microsoft.AspNetCore.Mvc.Testing;
@@ -31,7 +30,6 @@
 
     private void ValidateGetCatalogTypesResponse(GetCatalogTypesResponse aGetCatalogTypesResponse)
     {
-      aGetCatalogTypesResponse.CorrelationId.ShouldBe(GetCatalogTypesRequest.CorrelationId);
       aGetCatalogTypesResponse.CorrelationId.Should().Be(GetCatalogTypesRequest.CorrelationId);
     }
 

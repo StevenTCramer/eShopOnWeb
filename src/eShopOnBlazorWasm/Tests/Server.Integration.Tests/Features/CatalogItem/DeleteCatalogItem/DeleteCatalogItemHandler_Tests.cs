@@ -18,14 +18,14 @@
       JsonSerializerOptions aJsonSerializerOptions
     ) : base(aWebApplicationFactory, aJsonSerializerOptions)
     {
-      DeleteCatalogItemRequest = new DeleteCatalogItemRequest { CatalogItemId = 5 };
+      DeleteCatalogItemRequest = new DeleteCatalogItemRequest { CatalogItemId = 8 };
     }
 
     public async Task DeleteCatalogItemResponse()
     {
-      DeleteCatalogItemResponse DeleteCatalogItemResponse = await Send(DeleteCatalogItemRequest);
+      DeleteCatalogItemResponse deleteCatalogItemResponse = await Send(DeleteCatalogItemRequest);
 
-      ValidateDeleteCatalogItemResponse(DeleteCatalogItemResponse);
+      ValidateDeleteCatalogItemResponse(deleteCatalogItemResponse);
     }
 
     private void ValidateDeleteCatalogItemResponse(DeleteCatalogItemResponse aDeleteCatalogItemResponse)
