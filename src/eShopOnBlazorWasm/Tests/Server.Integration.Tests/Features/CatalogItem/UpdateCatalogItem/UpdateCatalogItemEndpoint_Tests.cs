@@ -27,7 +27,7 @@
     public async Task UpdatedCatalogItem()
     {
       UpdateCatalogItemResponse updateCatalogItemResponse =
-        await HttpClient.GetFromJsonAsync<UpdateCatalogItemResponse>(UpdateCatalogItemRequest.RouteFactory);
+        await HttpClient.GetFromJsonAsync<UpdateCatalogItemResponse>(UpdateCatalogItemRequest.GetRoute());
 
       ValidateUpdateCatalogItemResponse(updateCatalogItemResponse);
     }
@@ -37,7 +37,7 @@
       // Set invalid value
       UpdateCatalogItemRequest.CatalogItemId = -1;
 
-      HttpResponseMessage httpResponseMessage = await HttpClient.GetAsync(UpdateCatalogItemRequest.RouteFactory);
+      HttpResponseMessage httpResponseMessage = await HttpClient.GetAsync(UpdateCatalogItemRequest.GetRoute());
 
       string json = await httpResponseMessage.Content.ReadAsStringAsync();
 

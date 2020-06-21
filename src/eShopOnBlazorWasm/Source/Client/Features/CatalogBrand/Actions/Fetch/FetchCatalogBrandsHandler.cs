@@ -28,7 +28,7 @@ namespace eShopOnBlazorWasm.Features.CatalogBrands
       {
         var getCatalogBrandRequest = new GetCatalogBrandsRequest();
         GetCatalogBrandsResponse getCatalogBrandsResponse =
-          await HttpClient.GetFromJsonAsync<GetCatalogBrandsResponse>(getCatalogBrandRequest.RouteFactory);
+          await HttpClient.GetFromJsonAsync<GetCatalogBrandsResponse>(getCatalogBrandRequest.GetRoute());
         CatalogBrandState._CatalogBrands = 
           getCatalogBrandsResponse.CatalogBrands
             .ToDictionary(aCatalogBrand => aCatalogBrand.Id, aCatalogBrand => aCatalogBrand);

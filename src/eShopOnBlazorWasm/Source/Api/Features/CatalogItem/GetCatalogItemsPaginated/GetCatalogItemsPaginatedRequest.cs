@@ -23,7 +23,7 @@
 
     public int? CatalogTypeId { get; set; }
 
-    internal override string RouteFactory => 
+    internal override string GetRoute() => 
       $"{Route}?{nameof(PageSize)}={PageSize}&{nameof(PageIndex)}={PageIndex}&{nameof(CorrelationId)}={CorrelationId}";
   }
 }

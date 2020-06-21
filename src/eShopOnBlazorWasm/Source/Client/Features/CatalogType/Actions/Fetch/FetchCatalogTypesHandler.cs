@@ -28,7 +28,7 @@ namespace eShopOnBlazorWasm.Features.CatalogTypes
       {
         var getCatalogTypesRequest = new GetCatalogTypesRequest();
         GetCatalogTypesResponse getCatalogTypesResponse =
-          await HttpClient.GetFromJsonAsync<GetCatalogTypesResponse>(getCatalogTypesRequest.RouteFactory);
+          await HttpClient.GetFromJsonAsync<GetCatalogTypesResponse>(getCatalogTypesRequest.GetRoute());
         
         CatalogTypeState._CatalogTypes = 
           getCatalogTypesResponse

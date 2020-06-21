@@ -50,14 +50,10 @@
     /// <example>999.99</example>
     public decimal Price { get; set; }
 
-
-    internal override string RouteFactory
+    internal override string GetRoute()
     {
-      get
-      {
-        string temp = Route.Replace($"{{{nameof(CatalogItemId)}}}", CatalogItemId.ToString(), System.StringComparison.Ordinal);
-        return $"{temp}?{nameof(CorrelationId)}={CorrelationId}";
-      }
+      string temp = Route.Replace($"{{{nameof(CatalogItemId)}}}", CatalogItemId.ToString(), System.StringComparison.Ordinal);
+      return $"{temp}?{nameof(CorrelationId)}={CorrelationId}";
     }
   }
 }

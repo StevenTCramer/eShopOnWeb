@@ -1,7 +1,7 @@
 namespace eShopOnBlazorWasm.Features.CatalogItems
 {
-  using MediatR;
   using eShopOnBlazorWasm.Features.Bases;
+  using MediatR;
 
   public class GetCatalogItemRequest : BaseApiRequest, IRequest<GetCatalogItemResponse>
   {
@@ -13,7 +13,7 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
     /// <example>5</example>
     public int CatalogItemId { get; set; }
 
-    internal override string RouteFactory =>
+    internal override string GetRoute() =>
       $"{Route}?{nameof(CorrelationId)}={CorrelationId}"
       .Replace
       (

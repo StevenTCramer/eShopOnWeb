@@ -25,7 +25,7 @@
     public async Task AllCatalogBrands()
     {
       GetCatalogBrandsResponse getCatalogBrandsResponse =
-      await HttpClient.GetFromJsonAsync<GetCatalogBrandsResponse>(GetCatalogBrandsRequest.RouteFactory);
+      await HttpClient.GetFromJsonAsync<GetCatalogBrandsResponse>(GetCatalogBrandsRequest.GetRoute());
 
       ValidateGetCatalogBrandsResponse(getCatalogBrandsResponse);
     }

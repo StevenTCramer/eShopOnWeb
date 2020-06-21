@@ -27,7 +27,7 @@
     public async Task DeleteCatalogItemResponse()
     {
       DeleteCatalogItemResponse DeleteCatalogItemResponse =
-        await HttpClient.GetFromJsonAsync<DeleteCatalogItemResponse>(DeleteCatalogItemRequest.RouteFactory);
+        await HttpClient.GetFromJsonAsync<DeleteCatalogItemResponse>(DeleteCatalogItemRequest.GetRoute());
 
       ValidateDeleteCatalogItemResponse(DeleteCatalogItemResponse);
     }
@@ -37,7 +37,7 @@
       // Set invalid value
       DeleteCatalogItemRequest.CatalogItemId = -1;
 
-      HttpResponseMessage httpResponseMessage = await HttpClient.GetAsync(DeleteCatalogItemRequest.RouteFactory);
+      HttpResponseMessage httpResponseMessage = await HttpClient.GetAsync(DeleteCatalogItemRequest.GetRoute());
 
       string json = await httpResponseMessage.Content.ReadAsStringAsync();
 
