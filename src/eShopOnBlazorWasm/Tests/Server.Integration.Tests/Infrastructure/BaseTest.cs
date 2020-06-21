@@ -66,19 +66,6 @@ namespace eShopOnBlazorWasm.Server.Integration.Tests.Infrastructure
       );
     }
 
-    protected async Task<TResponse> GetJsonAsync<TResponse>(string aUri)
-    {
-      HttpResponseMessage httpResponseMessage = await HttpClient.GetAsync(aUri);
-
-      httpResponseMessage.EnsureSuccessStatusCode();
-
-      string json = await httpResponseMessage.Content.ReadAsStringAsync();
-
-      TResponse response = JsonSerializer.Deserialize<TResponse>(json, JsonSerializerOptions);
-
-      return response;
-    }
-
     protected async Task<TResponse> PostJsonAsync<TRequest, TResponse>(string aUri, TRequest aRequest)
     {
       HttpResponseMessage httpResponseMessage =
@@ -96,7 +83,6 @@ namespace eShopOnBlazorWasm.Server.Integration.Tests.Infrastructure
 
       return response;
     }
-
 
     public virtual async Task Setup()
     {
