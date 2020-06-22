@@ -17,7 +17,7 @@ namespace eShopOnBlazorWasm.Features.CatalogBrands
     /// </remarks>
     /// <param name="aGetCatalogBrandsRequest"></param>
     /// <returns><see cref="GetCatalogBrandsResponse"/></returns>
-    [HttpGet(GetCatalogBrandsRequest.Route)]
+    [HttpGet(GetCatalogBrandsRequest.RouteTemplate)]
     [SwaggerOperation(Tags = new[] { FeatureAnnotations.FeatureGroup })]
     [ProducesResponseType(typeof(GetCatalogBrandsResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]

@@ -16,7 +16,7 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
     /// </remarks>
     /// <param name="aCreateCatalogItemRequest"></param>
     /// <returns><see cref="CreateCatalogItemResponse"/></returns>
-    [HttpPost(CreateCatalogItemRequest.Route)]
+    [HttpPost(CreateCatalogItemRequest.RouteTemplate)]
     [SwaggerOperation(Tags = new[] { FeatureAnnotations.FeatureGroup })]
     [ProducesResponseType(typeof(CreateCatalogItemResponse), (int)HttpStatusCode.Created)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]

@@ -35,7 +35,7 @@
         };
 
         HttpResponseMessage httpResponseMessage =
-          await HttpClient.DeleteAsync(deleteCatalogItemRequest.RouteFactory);
+          await HttpClient.DeleteAsync(deleteCatalogItemRequest.GetRoute());
 
         httpResponseMessage.EnsureSuccessStatusCode();
 

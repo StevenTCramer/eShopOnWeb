@@ -16,7 +16,7 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
     /// </remarks>
     /// <param name="aGetCatalogItemsPaginatedRequest"></param>
     /// <returns><see cref="GetCatalogItemsPaginatedResponse"/></returns>
-    [HttpGet(GetCatalogItemsPaginatedRequest.Route)]
+    [HttpGet(GetCatalogItemsPaginatedRequest.RouteTemplate)]
     [SwaggerOperation(Tags = new[] { FeatureAnnotations.FeatureGroup })]
     [ProducesResponseType(typeof(GetCatalogItemsPaginatedResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]

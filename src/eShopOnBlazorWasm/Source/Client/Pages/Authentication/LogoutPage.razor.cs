@@ -4,6 +4,6 @@ namespace eShopOnBlazorWasm.Pages
 
   public partial class LogoutPage : BaseComponent
   {
-    public const string Route = "Logout";
+    public const string RouteTemplate = "Logout";
   }
 }

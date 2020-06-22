@@ -5,7 +5,7 @@
 
   public class CreateCatalogItemRequest : BaseApiRequest, IRequest<CreateCatalogItemResponse>
   {
-    public const string Route = "api/catalog-items";
+    public const string RouteTemplate = "api/catalog-items";
 
     /// <summary>
     /// The Id of the CatalogBrand
@@ -45,6 +45,6 @@
     /// <example>999.99</example>
     public decimal Price { get; set; }
 
-    internal override string RouteFactory => $"{Route}";
+    internal override string GetRoute() => $"{RouteTemplate}";
   }
 }

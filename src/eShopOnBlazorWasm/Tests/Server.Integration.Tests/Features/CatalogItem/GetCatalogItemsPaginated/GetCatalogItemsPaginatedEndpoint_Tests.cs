@@ -27,7 +27,7 @@
     public async Task _10CatalogItems_Given_PageSize_10_Requested()
     {
       GetCatalogItemsPaginatedResponse getCatalogItemsPaginatedResponse =
-        await HttpClient.GetFromJsonAsync<GetCatalogItemsPaginatedResponse>(GetCatalogItemsPaginatedRequest.RouteFactory);
+        await HttpClient.GetFromJsonAsync<GetCatalogItemsPaginatedResponse>(GetCatalogItemsPaginatedRequest.GetRoute());
 
       ValidateGetCatalogItemsPaginatedResponse(getCatalogItemsPaginatedResponse);
     }
@@ -37,7 +37,7 @@
       // Set invalid value
       GetCatalogItemsPaginatedRequest.PageIndex = -1;
 
-      HttpResponseMessage httpResponseMessage = await HttpClient.GetAsync(GetCatalogItemsPaginatedRequest.RouteFactory);
+      HttpResponseMessage httpResponseMessage = await HttpClient.GetAsync(GetCatalogItemsPaginatedRequest.GetRoute());
 
       string json = await httpResponseMessage.Content.ReadAsStringAsync();
 

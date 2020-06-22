@@ -8,10 +8,11 @@ namespace eShopOnBlazorWasm.Features.CatalogItems.Pages
 
   public partial class Index : BaseComponent
   {
-    public const string Route = "/Catalog";
+    public const string RouteTemplate = "/Catalog";
+    public static string GetRoute() => RouteTemplate;
 
     protected async Task CreateClick() =>
-      _ = await Mediator.Send(new RouteState.ChangeRouteAction { NewRoute = Create.Route });
+      _ = await Mediator.Send(new RouteState.ChangeRouteAction { NewRoute = Create.RouteTemplate });
 
     protected async Task HandlePageChange(int aPageIndex)
     {

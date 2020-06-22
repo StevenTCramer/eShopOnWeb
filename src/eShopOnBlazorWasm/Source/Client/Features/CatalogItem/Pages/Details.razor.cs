@@ -7,14 +7,15 @@ namespace eShopOnBlazorWasm.Features.CatalogItems.Pages
 
   public partial class Details : BaseComponent
   {
-    public const string Route = "/Catalog/Details/{EntityId}";
+    public const string RouteTemplate = "/Catalog/Details/{EntityId}";
 
-    public static string RouteFactory(int aEntityId) =>
-      Route.Replace($"{{{nameof(EntityId)}}}", aEntityId.ToString(), System.StringComparison.OrdinalIgnoreCase);
+    public static string GetRoute(int aEntityId) =>
+      RouteTemplate
+        .Replace($"{{{nameof(EntityId)}}}", aEntityId.ToString(), System.StringComparison.OrdinalIgnoreCase);
 
     [Parameter] public int EntityId { get; set; }
 
     protected async Task BackClick() =>
-      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Index.Route });
+      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Index.RouteTemplate });
   }
 }

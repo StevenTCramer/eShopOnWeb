@@ -25,7 +25,7 @@
     public async Task AllCatalogTypes()
     {
       GetCatalogTypesResponse getCatalogTypesResponse =
-        await HttpClient.GetFromJsonAsync<GetCatalogTypesResponse>(GetCatalogTypesRequest.RouteFactory);
+        await HttpClient.GetFromJsonAsync<GetCatalogTypesResponse>(GetCatalogTypesRequest.GetRoute());
 
       ValidateGetCatalogTypesResponse(getCatalogTypesResponse);
     }

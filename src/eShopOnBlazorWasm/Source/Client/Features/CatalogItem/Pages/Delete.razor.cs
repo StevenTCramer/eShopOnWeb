@@ -9,10 +9,11 @@ namespace eShopOnBlazorWasm.Features.CatalogItems.Pages
 
   public partial class Delete: BaseComponent
   {
-    public const string Route = "/Catalog/Delete/{EntityId}";
+    public const string RouteTemplate = "/Catalog/Delete/{EntityId}";
 
-    public static string RouteFactory(int aEntityId) =>
-      Route.Replace($"{{{nameof(EntityId)}}}", aEntityId.ToString(), System.StringComparison.OrdinalIgnoreCase);
+    public static string GetRoute(int aEntityId) =>
+      RouteTemplate
+        .Replace($"{{{nameof(EntityId)}}}", aEntityId.ToString(), System.StringComparison.OrdinalIgnoreCase);
 
     [Parameter] public int EntityId { get; set; }
 
@@ -20,10 +21,10 @@ namespace eShopOnBlazorWasm.Features.CatalogItems.Pages
     {
       Console.WriteLine("DeleteClicked");
       _ = await Mediator.Send(new DeleteCatalogItemAction { CatalogItemId = EntityId });
-      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Index.Route });
+      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Index.RouteTemplate });
     }
 
     protected async Task CancelClick() =>
-      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Index.Route });
+      _ = await Mediator.Send(new ChangeRouteAction { NewRoute = Index.RouteTemplate });
   }
 }
