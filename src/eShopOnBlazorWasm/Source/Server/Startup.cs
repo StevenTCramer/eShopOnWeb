@@ -1,12 +1,19 @@
 namespace eShopOnBlazorWasm.Server
 {
   using AutoMapper;
+  using eShopOnBlazorWasm.Features.Bases;
   using FluentValidation.AspNetCore;
   using MediatR;
   using Microsoft.AspNetCore.Builder;
   using Microsoft.AspNetCore.Hosting;
   using Microsoft.AspNetCore.Mvc;
   using Microsoft.AspNetCore.ResponseCompression;
+  using Microsoft.EntityFrameworkCore;
+  using Microsoft.eShopWeb;
+  using Microsoft.eShopWeb.ApplicationCore.Interfaces;
+  using Microsoft.eShopWeb.ApplicationCore.Services;
+  using Microsoft.eShopWeb.Infrastructure.Data;
+  using Microsoft.Extensions.Configuration;
   using Microsoft.Extensions.DependencyInjection;
   using Microsoft.Extensions.Hosting;
   using Microsoft.OpenApi.Models;
@@ -16,52 +23,18 @@ namespace eShopOnBlazorWasm.Server
   using System.Linq;
   using System.Net.Mime;
   using System.Reflection;
-  using eShopOnBlazorWasm.Features.Bases;
-  using Microsoft.eShopWeb.Infrastructure.Data;
-  using Microsoft.eShopWeb.ApplicationCore.Interfaces;
-  using Microsoft.EntityFrameworkCore;
-  using Microsoft.Extensions.Configuration;
-  using Microsoft.eShopWeb.ApplicationCore.Services;
-  using Microsoft.eShopWeb;
 
   public class Startup
   {
-    const string SwaggerVersion = "v1";
-    string SwaggerApiTitle => $"TimeWarp.Blazor API {SwaggerVersion}";
-    string SwaggerEndPoint => $"/swagger/{SwaggerVersion}/swagger.json";
+    private const string SwaggerVersion = "v1";
+    public IConfiguration Configuration { get; }
+    private string SwaggerApiTitle => $"TimeWarp.Blazor API {SwaggerVersion}";
+    private string SwaggerEndPoint => $"/swagger/{SwaggerVersion}/swagger.json";
 
     public Startup(IConfiguration configuration)
     {
       Configuration = configuration;
     }
-
-    public IConfiguration Configuration { get; }
-
-    public void ConfigureDevelopmentServices(IServiceCollection services)
-    {
-      // use in-memory database
-      ConfigureInMemoryDatabases(services);
-      services.AddSingleton<IUriComposer>(new UriComposer(Configuration.Get<CatalogSettings>()));
-
-      // use real database
-      //ConfigureProductionServices(services);
-    }
-
-    private void ConfigureInMemoryDatabases(IServiceCollection aServiceCollection)
-    {
-      // use in-memory database
-      aServiceCollection.AddDbContext<CatalogContext>
-      (
-        aDbContextOptionsBuilder => aDbContextOptionsBuilder.UseInMemoryDatabase("Catalog")
-      );
-
-      // Add Identity DbContext
-      //aServiceCollection.AddDbContext<AppIdentityDbContext>(options =>
-      //    options.UseInMemoryDatabase("Identity"));
-
-      ConfigureServices(aServiceCollection);
-    }
-
 
     public void Configure
     (
@@ -99,6 +72,16 @@ namespace eShopOnBlazorWasm.Server
       );
       aApplicationBuilder.UseStaticFiles();
       aApplicationBuilder.UseBlazorFrameworkFiles();
+    }
+
+    public void ConfigureDevelopmentServices(IServiceCollection services)
+    {
+      // use in-memory database
+      ConfigureInMemoryDatabases(services);
+      services.AddSingleton<IUriComposer>(new UriComposer(Configuration.Get<CatalogSettings>()));
+
+      // use real database
+      //ConfigureProductionServices(services);
     }
 
     public void ConfigureServices(IServiceCollection aServiceCollection)
@@ -152,6 +135,21 @@ namespace eShopOnBlazorWasm.Server
       aServiceCollection.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
     }
 
+    private void ConfigureInMemoryDatabases(IServiceCollection aServiceCollection)
+    {
+      // use in-memory database
+      aServiceCollection.AddDbContext<CatalogContext>
+      (
+        aDbContextOptionsBuilder => aDbContextOptionsBuilder.UseInMemoryDatabase("Catalog")
+      );
+
+      // Add Identity DbContext
+      //aServiceCollection.AddDbContext<AppIdentityDbContext>(options =>
+      //    options.UseInMemoryDatabase("Identity"));
+
+      ConfigureServices(aServiceCollection);
+    }
+
     private void ConfigureSwagger(IServiceCollection aServiceCollection)
     {
       // Register the Swagger generator, defining 1 or more Swagger documents
@@ -162,11 +160,10 @@ namespace eShopOnBlazorWasm.Server
             aSwaggerGenOptions
             .SwaggerDoc
             (
-              SwaggerVersion, 
+              SwaggerVersion,
               new OpenApiInfo { Title = SwaggerApiTitle, Version = SwaggerVersion }
             );
             aSwaggerGenOptions.EnableAnnotations();
-            
 
             // Set the comments path for the Swagger JSON and UI from Server.
             string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -179,6 +176,12 @@ namespace eShopOnBlazorWasm.Server
             aSwaggerGenOptions.IncludeXmlComments(xmlPath);
 
             aSwaggerGenOptions.AddFluentValidationRules();
+          aSwaggerGenOptions
+            .OrderActionsBy
+            (
+              aApiDescription =>
+                $"{aApiDescription.GroupName}{aApiDescription.HttpMethod}{aApiDescription.RelativePath.Contains("{")}{aApiDescription.RelativePath}"
+            );
           }
         );
     }
