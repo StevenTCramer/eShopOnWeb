@@ -9,6 +9,7 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
   using System.Threading;
   using System.Threading.Tasks;
   using Microsoft.eShopWeb.ApplicationCore.Specifications;
+  using System;
 
   public class GetCatalogItemsPaginatedHandler : 
     IRequestHandler<GetCatalogItemsPaginatedRequest, GetCatalogItemsPaginatedResponse>
@@ -42,9 +43,15 @@ namespace eShopOnBlazorWasm.Features.CatalogItems
           typeId: aGetCatalogItemsPaginatedRequest.CatalogTypeId
         );
       IReadOnlyList<CatalogItem> catalogItems = await CatalogItemRepository.ListAsync(catalogFilterPaginatedSpecification);
-      var response = new GetCatalogItemsPaginatedResponse(aGetCatalogItemsPaginatedRequest.CorrelationId) 
-      { 
-        //TODO: PageCount = 
+      var filterSpecification = new CatalogFilterSpecification(
+        aGetCatalogItemsPaginatedRequest.CatalogBrandId, 
+        aGetCatalogItemsPaginatedRequest.CatalogTypeId);
+      int totalItems = await CatalogItemRepository.CountAsync(filterSpecification);
+
+      var response = new GetCatalogItemsPaginatedResponse(aGetCatalogItemsPaginatedRequest.CorrelationId)
+      {
+        CorrelationId = aGetCatalogItemsPaginatedRequest.CorrelationId,
+        PageCount = int.Parse(Math.Ceiling((decimal)totalItems / aGetCatalogItemsPaginatedRequest.PageSize).ToString())
       };
 
       response.CatalogItems.AddRange(catalogItems.Select(Mapper.Map<CatalogItemDto>));

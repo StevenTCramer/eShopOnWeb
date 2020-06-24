@@ -21,7 +21,7 @@
       GetCatalogItemsPaginatedRequest = new GetCatalogItemsPaginatedRequest { PageIndex = 0, PageSize = 5 };
     }
 
-    public async Task _10CatalogItems_Given_PageSize_5_Requested()
+    public async Task _5CatalogItems_Given_PageSize_5_Requested()
     {
       GetCatalogItemsPaginatedResponse getCatalogItemsPaginatedResponse = await Send(GetCatalogItemsPaginatedRequest);
 
@@ -32,6 +32,7 @@
     {
       aGetCatalogItemsPaginatedResponse.CorrelationId.Should().Be(GetCatalogItemsPaginatedRequest.CorrelationId);
       aGetCatalogItemsPaginatedResponse.CatalogItems.Count.Should().Be(GetCatalogItemsPaginatedRequest.PageSize);
+      aGetCatalogItemsPaginatedResponse.PageCount.Should().Be(3); // 12 items seeded
     }
 
   }
